@@ -35,6 +35,17 @@ export function HeroSection() {
         {/* Base cream tone */}
         <div className="absolute inset-0 bg-[#F8F8EF]" />
 
+        {/* Hero Background Texture Image (HeroBg.jpg) from user resources */}
+        <div className="absolute inset-0 opacity-15 mix-blend-multiply pointer-events-none">
+          <Image
+            src="/images/HeroBg.jpg"
+            alt="Hero Background Accent"
+            fill
+            priority
+            className="object-cover object-center"
+          />
+        </div>
+
         {/* 
           Rich Forest Green Radial & Linear Gradient Mesh on the Right 
           Using direct CSS so it renders with 100% consistency in all browser engines

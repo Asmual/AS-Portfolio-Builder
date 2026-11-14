@@ -26,11 +26,12 @@ export default function LoginPage() {
     const validation = loginSchema.safeParse({ email, password });
     if (!validation.success) {
       const fieldErrors: Record<string, string> = {};
-      validation.error.errors.forEach((err) => {
+      const issues = validation.error.issues || [];
+      issues.forEach((err) => {
         if (err.path[0]) fieldErrors[err.path[0].toString()] = err.message;
       });
       setErrors(fieldErrors);
-      toast.error(validation.error.errors[0]?.message || "Invalid credentials format");
+      toast.error(issues[0]?.message || "Invalid credentials format");
       return;
     }
 

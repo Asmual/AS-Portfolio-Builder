@@ -52,13 +52,14 @@ export default function RegisterPage() {
 
     if (!validationResult.success) {
       const fieldErrors: Record<string, string> = {};
-      validationResult.error.errors.forEach((err) => {
+      const issues = validationResult.error.issues || [];
+      issues.forEach((err) => {
         if (err.path[0]) {
           fieldErrors[err.path[0].toString()] = err.message;
         }
       });
       setErrors(fieldErrors);
-      toast.error(validationResult.error.errors[0]?.message || "Please fix validation errors");
+      toast.error(issues[0]?.message || "Please fix validation errors");
       return;
     }
 

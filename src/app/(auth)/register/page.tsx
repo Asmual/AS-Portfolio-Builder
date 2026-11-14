@@ -3,9 +3,10 @@
 import * as React from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { Lock, Mail, User, ArrowLeft } from "lucide-react";
+import { Lock, Mail, User, ArrowLeft, Check, AlertCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { signUp } from "@/lib/authClient";
+import { signUp, signIn } from "@/lib/authClient";
+import { registerSchema } from "@/lib/validations/auth";
 import { toast } from "@/components/ui/sonner";
 
 export default function RegisterPage() {
@@ -16,16 +17,48 @@ export default function RegisterPage() {
   const [showPassword, setShowPassword] = React.useState(false);
   const [agreeTerms, setAgreeTerms] = React.useState(false);
   const [isLoading, setIsLoading] = React.useState(false);
+  const [errors, setErrors] = React.useState<Record<string, string>>({});
+
+  // Dynamic Password Strength Calculator (Red -> Yellow -> Green)
+  const passwordStrength = React.useMemo(() => {
+    if (!password) return { score: 0, label: "", color: "bg-gray-200" };
+    let score = 0;
+    if (password.length >= 8) score += 1;
+    if (/[A-Z]/.test(password)) score += 1;
+    if (/[a-z]/.test(password)) score += 1;
+    if (/[0-9]/.test(password)) score += 1;
+    if (/[^A-Za-z0-9]/.test(password)) score += 1;
+
+    if (score <= 2) {
+      return { score: 1, label: "Weak password", color: "bg-red-500", text: "text-red-500", width: "w-1/3" };
+    }
+    if (score <= 4) {
+      return { score: 2, label: "Moderate password", color: "bg-amber-400", text: "text-amber-500", width: "w-2/3" };
+    }
+    return { score: 3, label: "Strong password", color: "bg-emerald-600", text: "text-emerald-600", width: "w-full" };
+  }, [password]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!name || !email || !password) {
-      toast.error("Please fill in all required fields");
-      return;
-    }
+    setErrors({});
 
-    if (!agreeTerms) {
-      toast.error("Please agree to the terms & privacy policy to continue");
+    // Validate with Zod
+    const validationResult = registerSchema.safeParse({
+      name,
+      email,
+      password,
+      agreeTerms,
+    });
+
+    if (!validationResult.success) {
+      const fieldErrors: Record<string, string> = {};
+      validationResult.error.errors.forEach((err) => {
+        if (err.path[0]) {
+          fieldErrors[err.path[0].toString()] = err.message;
+        }
+      });
+      setErrors(fieldErrors);
+      toast.error(validationResult.error.errors[0]?.message || "Please fix validation errors");
       return;
     }
 
@@ -41,7 +74,7 @@ export default function RegisterPage() {
         toast.error(res.error.message || "Failed to create account. Try another email.");
       } else {
         toast.success("Account created successfully!", {
-          description: "Welcome to AS Portfolio Builder! Redirecting...",
+          description: "Welcome to AS Portfolio Builder! Redirecting to dashboard...",
         });
         router.push("/dashboard");
       }
@@ -52,10 +85,15 @@ export default function RegisterPage() {
     }
   };
 
-  const handleGoogleSignUp = () => {
-    toast.info("Google Sign-Up", {
-      description: "Redirecting to Google OAuth authentication...",
-    });
+  const handleGoogleSignUp = async () => {
+    try {
+      await signIn.social({
+        provider: "google",
+        callbackURL: "/dashboard",
+      });
+    } catch {
+      toast.error("Failed to initialize Google Sign-In");
+    }
   };
 
   return (
@@ -79,45 +117,34 @@ export default function RegisterPage() {
       {/* 
         ========================================================================
         MAIN CARD CONTAINER (Inspired directly by user reference mockup)
-        Rounded 3xl container, shadow-2xl, split into Left Hero & Right Form
         ========================================================================
       */}
-      <div className="w-full max-w-5xl rounded-[32px] sm:rounded-[36px] bg-white shadow-2xl overflow-hidden grid grid-cols-1 lg:grid-cols-12 min-h-[620px] z-10 border border-white/20">
+      <div className="w-full max-w-5xl rounded-[32px] sm:rounded-[36px] bg-white shadow-2xl overflow-hidden grid grid-cols-1 lg:grid-cols-12 min-h-[640px] z-10 border border-white/20">
         
-        {/* 
-          ----------------------------------------------------------------------
-          LEFT SIDE: Welcome Hero with Organic 3D Spheres & Headline
-          ----------------------------------------------------------------------
-        */}
+        {/* LEFT SIDE: Welcome Hero with Organic 3D Spheres & Headline */}
         <div className="lg:col-span-6 relative bg-gradient-to-br from-[#064B2B] via-[#08522f] to-[#16803D] p-8 sm:p-12 lg:p-14 flex flex-col justify-between overflow-hidden text-white select-none">
           
-          {/* Layered 3D Spheres (Matching the mockup's spherical art) */}
-          {/* Sphere 1: Top-left sphere */}
+          {/* Layered 3D Spheres */}
           <div
             className="absolute -top-16 -left-16 w-80 h-80 rounded-full opacity-90 pointer-events-none"
             style={{
-              background:
-                "radial-gradient(circle at 35% 35%, #22c55e 0%, #16803D 50%, #064B2B 90%)",
+              background: "radial-gradient(circle at 35% 35%, #22c55e 0%, #16803D 50%, #064B2B 90%)",
               boxShadow: "inset -10px -10px 30px rgba(0,0,0,0.5), 10px 20px 40px rgba(0,0,0,0.4)",
             }}
           />
 
-          {/* Sphere 2: Center-bottom 3D sphere */}
           <div
             className="absolute bottom-8 right-6 w-52 h-52 rounded-full opacity-95 pointer-events-none"
             style={{
-              background:
-                "radial-gradient(circle at 35% 30%, #4ade80 0%, #16803D 45%, #053b21 90%)",
+              background: "radial-gradient(circle at 35% 30%, #4ade80 0%, #16803D 45%, #053b21 90%)",
               boxShadow: "inset -8px -8px 25px rgba(0,0,0,0.6), 12px 18px 35px rgba(0,0,0,0.45)",
             }}
           />
 
-          {/* Sphere 3: Bottom-left sphere */}
           <div
             className="absolute -bottom-12 -left-12 w-48 h-48 rounded-full opacity-85 pointer-events-none"
             style={{
-              background:
-                "radial-gradient(circle at 40% 35%, #86efac 0%, #15803d 50%, #032b17 95%)",
+              background: "radial-gradient(circle at 40% 35%, #86efac 0%, #15803d 50%, #032b17 95%)",
               boxShadow: "inset -6px -6px 20px rgba(0,0,0,0.6), 8px 12px 25px rgba(0,0,0,0.4)",
             }}
           />
@@ -153,30 +180,23 @@ export default function RegisterPage() {
           </div>
         </div>
 
-        {/* 
-          ----------------------------------------------------------------------
-          RIGHT SIDE: Auth Registration Form
-          ----------------------------------------------------------------------
-        */}
+        {/* RIGHT SIDE: Auth Registration Form */}
         <div className="lg:col-span-6 relative p-8 sm:p-12 lg:p-14 flex flex-col justify-between bg-white">
           
-          {/* Subtle bottom-right decorative sphere arc from mockup */}
           <div
             className="absolute -bottom-14 -right-14 w-36 h-36 rounded-full opacity-35 pointer-events-none"
             style={{
-              background:
-                "radial-gradient(circle at 35% 35%, #22c55e 0%, #16803D 60%, #064B2B 95%)",
+              background: "radial-gradient(circle at 35% 35%, #22c55e 0%, #16803D 60%, #064B2B 95%)",
             }}
           />
 
           <div className="max-w-md w-full mx-auto my-auto relative z-10">
-            {/* Title & Subtitle */}
             <div className="space-y-1 mb-6">
               <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-[#10291D]">
                 Create account
               </h1>
               <p className="text-xs sm:text-sm text-[#10291D]/65">
-                Sign up to launch your custom portfolio today.
+                Sign up with strong credentials to secure your workspace.
               </p>
             </div>
 
@@ -193,12 +213,13 @@ export default function RegisterPage() {
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     placeholder="Full Name"
-                    className="w-full h-12 pl-11 pr-4 rounded-xl border border-gray-200 bg-[#F8F9FA] text-sm text-[#10291D] placeholder:text-gray-400 focus:outline-none focus:bg-white focus:border-[#16803D] focus:ring-2 focus:ring-[#16803D]/20 transition-all"
+                    className="w-full h-11 pl-11 pr-4 rounded-xl border border-gray-200 bg-[#F8F9FA] text-sm text-[#10291D] placeholder:text-gray-400 focus:outline-none focus:bg-white focus:border-[#16803D] focus:ring-2 focus:ring-[#16803D]/20 transition-all"
                   />
                 </div>
+                {errors.name && <p className="text-[11px] text-red-500 pl-1">{errors.name}</p>}
               </div>
 
-              {/* Field 2: Email */}
+              {/* Field 2: Email with Strict Domain Validation */}
               <div className="space-y-1">
                 <div className="relative flex items-center">
                   <div className="absolute left-4 text-gray-400">
@@ -209,10 +230,11 @@ export default function RegisterPage() {
                     required
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    placeholder="Email Address"
-                    className="w-full h-12 pl-11 pr-4 rounded-xl border border-gray-200 bg-[#F8F9FA] text-sm text-[#10291D] placeholder:text-gray-400 focus:outline-none focus:bg-white focus:border-[#16803D] focus:ring-2 focus:ring-[#16803D]/20 transition-all"
+                    placeholder="Valid Email (e.g. name@gmail.com)"
+                    className="w-full h-11 pl-11 pr-4 rounded-xl border border-gray-200 bg-[#F8F9FA] text-sm text-[#10291D] placeholder:text-gray-400 focus:outline-none focus:bg-white focus:border-[#16803D] focus:ring-2 focus:ring-[#16803D]/20 transition-all"
                   />
                 </div>
+                {errors.email && <p className="text-[11px] text-red-500 pl-1">{errors.email}</p>}
               </div>
 
               {/* Field 3: Password with SHOW/HIDE toggle */}
@@ -227,7 +249,7 @@ export default function RegisterPage() {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder="Create a strong password"
-                    className="w-full h-12 pl-11 pr-20 rounded-xl border border-gray-200 bg-[#F8F9FA] text-sm text-[#10291D] placeholder:text-gray-400 focus:outline-none focus:bg-white focus:border-[#16803D] focus:ring-2 focus:ring-[#16803D]/20 transition-all"
+                    className="w-full h-11 pl-11 pr-20 rounded-xl border border-gray-200 bg-[#F8F9FA] text-sm text-[#10291D] placeholder:text-gray-400 focus:outline-none focus:bg-white focus:border-[#16803D] focus:ring-2 focus:ring-[#16803D]/20 transition-all"
                   />
                   <button
                     type="button"
@@ -237,6 +259,43 @@ export default function RegisterPage() {
                     {showPassword ? "HIDE" : "SHOW"}
                   </button>
                 </div>
+
+                {/* VISUAL PASSWORD STRENGTH METER (Red -> Yellow -> Green) */}
+                {password.length > 0 && (
+                  <div className="space-y-1.5 pt-1 px-1">
+                    <div className="flex items-center justify-between text-[11px]">
+                      <span className="text-gray-500">Password Strength:</span>
+                      <span className={`font-semibold ${passwordStrength.text}`}>
+                        {passwordStrength.label}
+                      </span>
+                    </div>
+                    {/* Visual Segmented Progress Bar */}
+                    <div className="h-1.5 w-full bg-gray-100 rounded-full overflow-hidden flex gap-1">
+                      <div
+                        className={`h-full transition-all duration-300 rounded-full ${
+                          passwordStrength.score >= 1 ? passwordStrength.color : "bg-transparent"
+                        } w-1/3`}
+                      />
+                      <div
+                        className={`h-full transition-all duration-300 rounded-full ${
+                          passwordStrength.score >= 2 ? passwordStrength.color : "bg-transparent"
+                        } w-1/3`}
+                      />
+                      <div
+                        className={`h-full transition-all duration-300 rounded-full ${
+                          passwordStrength.score >= 3 ? passwordStrength.color : "bg-transparent"
+                        } w-1/3`}
+                      />
+                    </div>
+                    <div className="text-[10px] text-gray-400 flex flex-wrap gap-2 pt-0.5">
+                      <span className={password.length >= 8 ? "text-emerald-600 font-medium" : ""}>✓ 8+ chars</span>
+                      <span className={/[A-Z]/.test(password) ? "text-emerald-600 font-medium" : ""}>✓ Uppercase</span>
+                      <span className={/[0-9]/.test(password) ? "text-emerald-600 font-medium" : ""}>✓ Number</span>
+                      <span className={/[^A-Za-z0-9]/.test(password) ? "text-emerald-600 font-medium" : ""}>✓ Symbol</span>
+                    </div>
+                  </div>
+                )}
+                {errors.password && <p className="text-[11px] text-red-500 pl-1">{errors.password}</p>}
               </div>
 
               {/* Agree to Terms */}
@@ -259,13 +318,14 @@ export default function RegisterPage() {
                     </Link>
                   </span>
                 </label>
+                {errors.agreeTerms && <p className="text-[11px] text-red-500 pl-1">{errors.agreeTerms}</p>}
               </div>
 
               {/* Primary Action Button: "Sign up" */}
               <Button
                 type="submit"
                 disabled={isLoading}
-                className="w-full h-12 rounded-xl text-sm font-bold bg-[#064B2B] hover:bg-[#043820] text-white shadow-md hover:shadow-lg transition-all mt-3 cursor-pointer"
+                className="w-full h-11 rounded-xl text-sm font-bold bg-[#064B2B] hover:bg-[#043820] text-white shadow-md hover:shadow-lg transition-all mt-2 cursor-pointer"
               >
                 {isLoading ? "Creating account..." : "Sign up"}
               </Button>
@@ -277,11 +337,11 @@ export default function RegisterPage() {
                 <div className="border-t border-gray-200 w-full" />
               </div>
 
-              {/* Secondary Button: "Sign up with Google" */}
+              {/* Google Sign Up Button */}
               <button
                 type="button"
                 onClick={handleGoogleSignUp}
-                className="w-full h-12 rounded-xl border border-gray-300 bg-white hover:bg-gray-50 text-sm font-semibold text-[#10291D] flex items-center justify-center gap-3 transition-colors shadow-xs"
+                className="w-full h-11 rounded-xl border border-gray-300 bg-white hover:bg-gray-50 text-sm font-semibold text-[#10291D] flex items-center justify-center gap-3 transition-colors shadow-xs"
               >
                 <svg className="w-4 h-4" viewBox="0 0 24 24">
                   <path
@@ -305,8 +365,7 @@ export default function RegisterPage() {
               </button>
             </form>
 
-            {/* Bottom Link: "Already have an account? Sign in" */}
-            <div className="mt-6 text-center text-xs text-[#10291D]/70">
+            <div className="mt-5 text-center text-xs text-[#10291D]/70">
               Already have an account?{" "}
               <Link href="/login" className="font-bold text-[#16803D] hover:underline">
                 Sign in
@@ -314,7 +373,7 @@ export default function RegisterPage() {
             </div>
           </div>
 
-          <div className="text-[11px] text-gray-400 text-center mt-4">
+          <div className="text-[11px] text-gray-400 text-center mt-3">
             © 2025 AS Portfolio Builder. All rights reserved.
           </div>
         </div>

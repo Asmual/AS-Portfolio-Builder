@@ -7,6 +7,7 @@ import { Lock, Mail, ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { BrandLogo } from "@/components/common/BrandLogo";
 import { signIn } from "@/lib/authClient";
+import { loginSchema } from "@/lib/validations/auth";
 import { toast } from "@/components/ui/sonner";
 
 export default function LoginPage() {
@@ -16,11 +17,20 @@ export default function LoginPage() {
   const [showPassword, setShowPassword] = React.useState(false);
   const [rememberMe, setRememberMe] = React.useState(false);
   const [isLoading, setIsLoading] = React.useState(false);
+  const [errors, setErrors] = React.useState<Record<string, string>>({});
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!email || !password) {
-      toast.error("Please fill in both email and password");
+    setErrors({});
+
+    const validation = loginSchema.safeParse({ email, password });
+    if (!validation.success) {
+      const fieldErrors: Record<string, string> = {};
+      validation.error.errors.forEach((err) => {
+        if (err.path[0]) fieldErrors[err.path[0].toString()] = err.message;
+      });
+      setErrors(fieldErrors);
+      toast.error(validation.error.errors[0]?.message || "Invalid credentials format");
       return;
     }
 
@@ -32,7 +42,7 @@ export default function LoginPage() {
       });
 
       if (res.error) {
-        toast.error(res.error.message || "Failed to sign in. Please verify your credentials.");
+        toast.error(res.error.message || "Failed to sign in. Please verify your email and password.");
       } else {
         toast.success("Welcome back!", {
           description: "Signed in successfully. Redirecting to dashboard...",
@@ -46,10 +56,15 @@ export default function LoginPage() {
     }
   };
 
-  const handleGoogleSignIn = () => {
-    toast.info("Google Sign-In", {
-      description: "Redirecting to Google OAuth authentication...",
-    });
+  const handleGoogleSignIn = async () => {
+    try {
+      await signIn.social({
+        provider: "google",
+        callbackURL: "/dashboard",
+      });
+    } catch {
+      toast.error("Failed to initialize Google Sign-In");
+    }
   };
 
   return (
@@ -70,49 +85,33 @@ export default function LoginPage() {
         </Link>
       </div>
 
-      {/* 
-        ========================================================================
-        MAIN CARD CONTAINER (Inspired directly by user reference mockup)
-        Rounded 3xl container, shadow-2xl, split into Left Hero & Right Form
-        ========================================================================
-      */}
+      {/* MAIN CARD CONTAINER */}
       <div className="w-full max-w-5xl rounded-[32px] sm:rounded-[36px] bg-white shadow-2xl overflow-hidden grid grid-cols-1 lg:grid-cols-12 min-h-[580px] z-10 border border-white/20">
         
-        {/* 
-          ----------------------------------------------------------------------
-          LEFT SIDE: Welcome Hero with Organic 3D Spheres & Headline
-          (Exact visual concept of the blue spheres adapted to Brand Green)
-          ----------------------------------------------------------------------
-        */}
+        {/* LEFT SIDE: Welcome Hero */}
         <div className="lg:col-span-6 relative bg-gradient-to-br from-[#064B2B] via-[#08522f] to-[#16803D] p-8 sm:p-12 lg:p-14 flex flex-col justify-between overflow-hidden text-white select-none">
           
-          {/* Layered 3D Spheres (Matching the mockup's spherical art) */}
-          {/* Sphere 1: Large overlapping top-left sphere */}
+          {/* Layered 3D Spheres */}
           <div
             className="absolute -top-16 -left-16 w-80 h-80 rounded-full opacity-90 pointer-events-none"
             style={{
-              background:
-                "radial-gradient(circle at 35% 35%, #22c55e 0%, #16803D 50%, #064B2B 90%)",
+              background: "radial-gradient(circle at 35% 35%, #22c55e 0%, #16803D 50%, #064B2B 90%)",
               boxShadow: "inset -10px -10px 30px rgba(0,0,0,0.5), 10px 20px 40px rgba(0,0,0,0.4)",
             }}
           />
 
-          {/* Sphere 2: Center-bottom prominent 3D sphere */}
           <div
             className="absolute bottom-8 right-6 w-52 h-52 rounded-full opacity-95 pointer-events-none"
             style={{
-              background:
-                "radial-gradient(circle at 35% 30%, #4ade80 0%, #16803D 45%, #053b21 90%)",
+              background: "radial-gradient(circle at 35% 30%, #4ade80 0%, #16803D 45%, #053b21 90%)",
               boxShadow: "inset -8px -8px 25px rgba(0,0,0,0.6), 12px 18px 35px rgba(0,0,0,0.45)",
             }}
           />
 
-          {/* Sphere 3: Bottom-left accent sphere */}
           <div
             className="absolute -bottom-12 -left-12 w-48 h-48 rounded-full opacity-85 pointer-events-none"
             style={{
-              background:
-                "radial-gradient(circle at 40% 35%, #86efac 0%, #15803d 50%, #032b17 95%)",
+              background: "radial-gradient(circle at 40% 35%, #86efac 0%, #15803d 50%, #032b17 95%)",
               boxShadow: "inset -6px -6px 20px rgba(0,0,0,0.6), 8px 12px 25px rgba(0,0,0,0.4)",
             }}
           />
@@ -127,7 +126,7 @@ export default function LoginPage() {
             </span>
           </div>
 
-          {/* Center Welcome Typography (Exact layout from mockup) */}
+          {/* Center Welcome Typography */}
           <div className="relative z-10 my-auto py-12 max-w-sm">
             <h2 className="text-3xl sm:text-4xl lg:text-[44px] font-black tracking-tight leading-tight text-white uppercase drop-shadow-sm">
               WELCOME
@@ -140,7 +139,6 @@ export default function LoginPage() {
             </p>
           </div>
 
-          {/* Bottom stats / trust indicator */}
           <div className="relative z-10 flex items-center gap-4 text-[11px] text-white/70">
             <span>• 100% Secure SSL</span>
             <span>• Instant Customizer</span>
@@ -148,25 +146,17 @@ export default function LoginPage() {
           </div>
         </div>
 
-        {/* 
-          ----------------------------------------------------------------------
-          RIGHT SIDE: Auth Sign-in Form
-          (Form inputs, SHOW password toggle, Remember me, Sign in button, Or, Google)
-          ----------------------------------------------------------------------
-        */}
+        {/* RIGHT SIDE: Auth Sign-in Form */}
         <div className="lg:col-span-6 relative p-8 sm:p-12 lg:p-14 flex flex-col justify-between bg-white">
           
-          {/* Subtle bottom-right decorative sphere arc from the mockup */}
           <div
             className="absolute -bottom-14 -right-14 w-36 h-36 rounded-full opacity-35 pointer-events-none"
             style={{
-              background:
-                "radial-gradient(circle at 35% 35%, #22c55e 0%, #16803D 60%, #064B2B 95%)",
+              background: "radial-gradient(circle at 35% 35%, #22c55e 0%, #16803D 60%, #064B2B 95%)",
             }}
           />
 
           <div className="max-w-md w-full mx-auto my-auto relative z-10">
-            {/* Title & Subtitle */}
             <div className="space-y-1 mb-8">
               <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-[#10291D]">
                 Sign in
@@ -192,9 +182,10 @@ export default function LoginPage() {
                     className="w-full h-12 pl-11 pr-4 rounded-xl border border-gray-200 bg-[#F8F9FA] text-sm text-[#10291D] placeholder:text-gray-400 focus:outline-none focus:bg-white focus:border-[#16803D] focus:ring-2 focus:ring-[#16803D]/20 transition-all"
                   />
                 </div>
+                {errors.email && <p className="text-[11px] text-red-500 pl-1">{errors.email}</p>}
               </div>
 
-              {/* Field 2: Password with SHOW/HIDE toggle button */}
+              {/* Field 2: Password with SHOW/HIDE toggle */}
               <div className="space-y-1">
                 <div className="relative flex items-center">
                   <div className="absolute left-4 text-gray-400">
@@ -208,7 +199,6 @@ export default function LoginPage() {
                     placeholder="Password"
                     className="w-full h-12 pl-11 pr-20 rounded-xl border border-gray-200 bg-[#F8F9FA] text-sm text-[#10291D] placeholder:text-gray-400 focus:outline-none focus:bg-white focus:border-[#16803D] focus:ring-2 focus:ring-[#16803D]/20 transition-all"
                   />
-                  {/* SHOW / HIDE Text Button matching mockup */}
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
@@ -217,9 +207,10 @@ export default function LoginPage() {
                     {showPassword ? "HIDE" : "SHOW"}
                   </button>
                 </div>
+                {errors.password && <p className="text-[11px] text-red-500 pl-1">{errors.password}</p>}
               </div>
 
-              {/* Remember me & Forgot Password row */}
+              {/* Remember me & Forgot Password */}
               <div className="flex items-center justify-between text-xs pt-1">
                 <label className="flex items-center gap-2 cursor-pointer select-none text-[#10291D]/75">
                   <input
@@ -255,13 +246,12 @@ export default function LoginPage() {
                 <div className="border-t border-gray-200 w-full" />
               </div>
 
-              {/* Secondary Button: "Sign in with Google" / "Sign in with other" */}
+              {/* Google Sign In Button */}
               <button
                 type="button"
                 onClick={handleGoogleSignIn}
                 className="w-full h-12 rounded-xl border border-gray-300 bg-white hover:bg-gray-50 text-sm font-semibold text-[#10291D] flex items-center justify-center gap-3 transition-colors shadow-xs"
               >
-                {/* Google SVG Icon */}
                 <svg className="w-4 h-4" viewBox="0 0 24 24">
                   <path
                     fill="#4285F4"
@@ -284,7 +274,6 @@ export default function LoginPage() {
               </button>
             </form>
 
-            {/* Bottom Link: "Don't have an account? Sign up" */}
             <div className="mt-8 text-center text-xs text-[#10291D]/70">
               Don&apos;t have an account?{" "}
               <Link href="/register" className="font-bold text-[#16803D] hover:underline">

@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 
@@ -11,30 +13,69 @@ export function BrandLogo({ className, iconOnly = false }: BrandLogoProps) {
     <Link
       href="/"
       className={cn("flex items-center gap-3 group select-none", className)}
+      aria-label="AS Portfolio Builder Home"
     >
-      {/* Brand Hexagon/Leaf Emblem */}
-      <div className="relative flex items-center justify-center w-10 h-10 rounded-2xl bg-gradient-to-br from-emerald-500/15 via-emerald-600/10 to-transparent border border-emerald-600/30 text-emerald-700 dark:text-emerald-400 shadow-sm transition-transform duration-300 group-hover:scale-105">
+      {/* Modern High-End Monogram / Hex Emblem */}
+      <div className="relative flex items-center justify-center w-11 h-11 rounded-2xl bg-gradient-to-br from-[#064B2B] via-[#0d5c36] to-[#16803D] text-white shadow-md shadow-emerald-950/20 border border-emerald-400/25 transition-all duration-300 group-hover:scale-105 group-hover:shadow-lg group-hover:shadow-emerald-900/30">
+        {/* Soft Ambient Inner Glow */}
+        <div className="absolute inset-0 rounded-2xl bg-radial from-white/20 via-transparent to-transparent opacity-60" />
+        
+        {/* Modern Stylized Monogram SVG */}
         <svg
-          viewBox="0 0 24 24"
+          viewBox="0 0 32 32"
           fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          className="w-5 h-5 text-emerald-600 dark:text-emerald-400"
+          xmlns="http://www.w3.org/2000/svg"
+          className="w-6 h-6 text-white relative z-10"
         >
-          {/* House outline */}
-          <path d="M3 10.5L12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v6H4a1 1 0 0 1-1-1v-9.5z" />
-          {/* Sprouting leaf through the center */}
-          <path d="M12 9c0 3 2 4 4 4" strokeWidth="2.2" className="text-emerald-500" />
-          <path d="M12 9c-2 1-3 3-3 5" strokeWidth="2" />
+          {/* Outer geometric shield / portfolio frame */}
+          <rect
+            x="4"
+            y="4"
+            width="24"
+            height="24"
+            rx="6"
+            stroke="#CDECCB"
+            strokeWidth="1.8"
+            strokeOpacity="0.85"
+          />
+          {/* Stylized 'A' chevron */}
+          <path
+            d="M10 22L16 9L22 22"
+            stroke="#FFFFFF"
+            strokeWidth="2.2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+          {/* 'S' fluid wave through crossbar */}
+          <path
+            d="M12 17C14 15.5 18 15.5 20 17"
+            stroke="#86EFAC"
+            strokeWidth="2.4"
+            strokeLinecap="round"
+          />
         </svg>
+
+        {/* Small floating emerald spark */}
+        <span className="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full bg-[#16803D] border-2 border-white" />
       </div>
 
       {!iconOnly && (
-        <span className="text-xl font-bold tracking-tight text-foreground group-hover:text-primary transition-colors">
-          AS Portfolio Builder
-        </span>
+        <div className="flex items-baseline tracking-tight">
+          {/* AS with Brand Base Green & Modern Badge feel */}
+          <span className="text-2xl font-black tracking-tight text-[#064B2B] font-sans">
+            AS
+          </span>
+          {/* Portfolio in Dark Green Charcoal */}
+          <span className="text-[19px] font-semibold text-[#10291D] ml-1.5 font-sans tracking-tight">
+            Portfolio
+          </span>
+          {/* Builder highlighted with Theme Accent Green */}
+          <span className="text-[19px] font-extrabold text-[#16803D] ml-1 font-sans tracking-tight">
+            Builder
+          </span>
+          {/* Minimal Accent Dot */}
+          <span className="inline-block w-1.5 h-1.5 rounded-full bg-[#16803D] ml-0.5 mb-1 animate-pulse" />
+        </div>
       )}
     </Link>
   );

@@ -38,7 +38,7 @@ export default function AdminLayout({
   return (
     <div className="min-h-screen bg-[#F0F2F5] text-[#10291D] flex flex-col">
       {/* Admin Top Header */}
-      <header className="h-16 bg-[#064B2B] text-white px-6 lg:px-10 flex items-center justify-between sticky top-0 z-30 shadow-md">
+      <header className="h-16 bg-[#136968] text-white px-6 lg:px-10 flex items-center justify-between sticky top-0 z-30 shadow-md">
         <div className="flex items-center gap-4">
           <BrandLogo />
           <div className="h-6 w-px bg-white/20 hidden sm:block" />
@@ -53,7 +53,7 @@ export default function AdminLayout({
             <Button
               variant="outline"
               size="sm"
-              className="rounded-full text-xs font-bold bg-white/10 text-white border-white/20 hover:bg-white hover:text-[#064B2B] gap-1.5 h-9"
+              className="rounded-full text-xs font-bold bg-white/10 text-white border-white/20 hover:bg-white hover:text-[#136968] gap-1.5 h-9"
             >
               <ArrowLeft className="w-3.5 h-3.5" />
               <span>User Dashboard</span>

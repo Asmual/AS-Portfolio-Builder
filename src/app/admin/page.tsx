@@ -116,7 +116,7 @@ export default function AdminDashboardPage() {
         <div className="p-6 rounded-3xl bg-white border border-gray-200 shadow-xs space-y-2">
           <div className="flex items-center justify-between text-gray-500 text-xs">
             <span>Total Registered Users</span>
-            <Users className="w-4 h-4 text-[#16803D]" />
+            <Users className="w-4 h-4 text-[#136968]" />
           </div>
           <h3 className="text-3xl font-black text-[#10291D]">
             {stats ? stats.totalUsers : 2}
@@ -183,7 +183,7 @@ export default function AdminDashboardPage() {
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search user or email..."
-              className="w-full sm:w-64 h-9 pl-9 pr-3 rounded-xl border border-gray-200 text-xs focus:outline-none focus:border-[#16803D]"
+              className="w-full sm:w-64 h-9 pl-9 pr-3 rounded-xl border border-gray-200 text-xs focus:outline-none focus:border-[#136968]"
             />
           </div>
         </div>
@@ -249,7 +249,7 @@ export default function AdminDashboardPage() {
       {/* Infrastructure & System Health Status */}
       <div className="p-6 rounded-3xl bg-white border border-gray-200 shadow-xs space-y-4">
         <h2 className="text-sm font-bold text-[#10291D] flex items-center gap-2">
-          <Activity className="w-4 h-4 text-[#16803D]" />
+          <Activity className="w-4 h-4 text-[#136968]" />
           <span>Infrastructure & Security Monitoring</span>
         </h2>
 

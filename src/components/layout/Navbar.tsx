@@ -19,17 +19,17 @@ export function Navbar() {
         {/* Center: Desktop Navigation Links (text-[15px] font-medium) */}
         <nav className="hidden md:flex items-center gap-7 lg:gap-8 text-[15px] font-medium text-[#10291D]/90">
           {/* Themes Dropdown */}
-          <div className="relative group cursor-pointer flex items-center gap-1.5 hover:text-[#064B2B] transition-colors py-2">
+          <div className="relative group cursor-pointer flex items-center gap-1.5 hover:text-[#136968] transition-colors py-2">
             <span>Themes</span>
             <ChevronDown className="w-4 h-4 transition-transform duration-200 group-hover:rotate-180 text-[#10291D]/70" />
             
-            {/* Dropdown Menu - matching navbar font size [15px], generous padding, and clear icons */}
-            <div className="absolute top-full left-0 mt-1 w-64 rounded-2xl border border-[#CDECCB]/70 bg-white p-2.5 shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+            {/* Dropdown Menu */}
+            <div className="absolute top-full left-0 mt-1 w-64 rounded-2xl border border-[#B8DFDF]/70 bg-white p-2.5 shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
               <Link
                 href="#themes"
-                className="flex items-center gap-3 px-3.5 py-2.5 text-[15px] rounded-xl hover:bg-[#eef7ee] text-[#10291D] font-medium transition-colors group/item"
+                className="flex items-center gap-3 px-3.5 py-2.5 text-[15px] rounded-xl hover:bg-[#E8F4F4] text-[#10291D] font-medium transition-colors group/item"
               >
-                <div className="w-8 h-8 rounded-lg bg-[#eef7ee] text-[#16803D] flex items-center justify-center shrink-0 group-hover/item:bg-[#16803D] group-hover/item:text-white transition-colors">
+                <div className="w-8 h-8 rounded-lg bg-[#E8F4F4] text-[#136968] flex items-center justify-center shrink-0 group-hover/item:bg-[#136968] group-hover/item:text-white transition-colors">
                   <LayoutGrid className="w-4 h-4" />
                 </div>
                 <div>
@@ -40,9 +40,9 @@ export function Navbar() {
 
               <Link
                 href="#themes"
-                className="flex items-center gap-3 px-3.5 py-2.5 text-[15px] rounded-xl hover:bg-[#eef7ee] text-[#10291D] font-medium transition-colors group/item"
+                className="flex items-center gap-3 px-3.5 py-2.5 text-[15px] rounded-xl hover:bg-[#E8F4F4] text-[#10291D] font-medium transition-colors group/item"
               >
-                <div className="w-8 h-8 rounded-lg bg-[#eef7ee] text-[#16803D] flex items-center justify-center shrink-0 group-hover/item:bg-[#16803D] group-hover/item:text-white transition-colors">
+                <div className="w-8 h-8 rounded-lg bg-[#E8F4F4] text-[#136968] flex items-center justify-center shrink-0 group-hover/item:bg-[#136968] group-hover/item:text-white transition-colors">
                   <Palette className="w-4 h-4" />
                 </div>
                 <div>
@@ -53,9 +53,9 @@ export function Navbar() {
 
               <Link
                 href="#themes"
-                className="flex items-center gap-3 px-3.5 py-2.5 text-[15px] rounded-xl hover:bg-[#eef7ee] text-[#10291D] font-medium transition-colors group/item"
+                className="flex items-center gap-3 px-3.5 py-2.5 text-[15px] rounded-xl hover:bg-[#E8F4F4] text-[#10291D] font-medium transition-colors group/item"
               >
-                <div className="w-8 h-8 rounded-lg bg-[#eef7ee] text-[#16803D] flex items-center justify-center shrink-0 group-hover/item:bg-[#16803D] group-hover/item:text-white transition-colors">
+                <div className="w-8 h-8 rounded-lg bg-[#E8F4F4] text-[#136968] flex items-center justify-center shrink-0 group-hover/item:bg-[#136968] group-hover/item:text-white transition-colors">
                   <Briefcase className="w-4 h-4" />
                 </div>
                 <div>
@@ -66,16 +66,16 @@ export function Navbar() {
             </div>
           </div>
 
-          <Link href="#features" className="hover:text-[#064B2B] transition-colors py-2">
+          <Link href="#features" className="hover:text-[#136968] transition-colors py-2">
             Features
           </Link>
-          <Link href="#pricing" className="hover:text-[#064B2B] transition-colors py-2">
+          <Link href="#pricing" className="hover:text-[#136968] transition-colors py-2">
             Pricing
           </Link>
-          <Link href="#templates" className="hover:text-[#064B2B] transition-colors py-2">
+          <Link href="#templates" className="hover:text-[#136968] transition-colors py-2">
             Templates
           </Link>
-          <Link href="#contact" className="hover:text-[#064B2B] transition-colors py-2">
+          <Link href="#contact" className="hover:text-[#136968] transition-colors py-2">
             Contact
           </Link>
         </nav>
@@ -96,7 +96,7 @@ export function Navbar() {
             <Button
               variant="outline"
               size="default"
-              className="rounded-full px-6 font-medium text-sm border border-[#064B2B]/25 bg-transparent hover:bg-white/50 text-[#10291D] shadow-none h-11 transition-all"
+              className="rounded-full px-6 font-medium text-sm border border-[#136968]/30 bg-transparent hover:bg-white text-[#10291D] shadow-none h-11 transition-all cursor-pointer"
             >
               Sign In
             </Button>
@@ -107,7 +107,7 @@ export function Navbar() {
             <Button
               variant="default"
               size="default"
-              className="rounded-full px-6 gap-2 font-medium text-sm bg-[#064B2B] hover:bg-[#043820] text-white shadow-md hover:shadow-lg transition-all h-11"
+              className="rounded-full px-6 gap-2 font-medium text-sm bg-[#136968] hover:bg-[#0c4a49] text-white shadow-md hover:shadow-lg transition-all h-11 cursor-pointer"
             >
               <span>Get Started</span>
               <ArrowRight className="w-4 h-4" />
@@ -136,7 +136,7 @@ export function Navbar() {
       {mobileMenuOpen && (
         <div className="sm:hidden border-b border-border bg-[#F8F8EF]/95 backdrop-blur-md px-6 py-6 space-y-4">
           <div className="space-y-1">
-            <div className="text-xs font-bold uppercase tracking-wider text-[#16803D] px-2 py-1">
+            <div className="text-xs font-bold uppercase tracking-wider text-[#136968] px-2 py-1">
               Themes
             </div>
             <Link
@@ -188,7 +188,7 @@ export function Navbar() {
 
           <div className="pt-2">
             <Link href="/register" onClick={() => setMobileMenuOpen(false)}>
-              <Button className="w-full bg-[#064B2B] text-white rounded-full h-11 text-sm font-semibold">
+              <Button className="w-full bg-[#136968] hover:bg-[#0c4a49] text-white rounded-full h-11 text-sm font-semibold transition-colors">
                 Get Started Free
               </Button>
             </Link>

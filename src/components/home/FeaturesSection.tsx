@@ -84,9 +84,9 @@ export function FeaturesSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.45, delay: idx * 0.08 }}
-                className="bg-white p-6 rounded-2xl border border-[#dbe8df] shadow-xs hover:border-[#16803D]/40 hover:shadow-md transition-all group"
+                className="bg-white p-6 rounded-2xl border border-[#B8DFDF]/80 shadow-xs hover:border-[#136968]/50 hover:shadow-md transition-all group"
               >
-                <div className="w-10 h-10 rounded-xl bg-[#F8F8EF] border border-[#CDECCB] flex items-center justify-center text-[#16803D] group-hover:scale-105 group-hover:bg-[#064B2B] group-hover:text-white transition-all mb-4">
+                <div className="w-10 h-10 rounded-xl bg-[#E8F4F4] border border-[#B8DFDF] flex items-center justify-center text-[#136968] group-hover:scale-105 group-hover:bg-[#136968] group-hover:text-white transition-all mb-4">
                   <Icon className="w-5 h-5 stroke-[2]" />
                 </div>
                 <h3 className="text-base font-bold text-[#10291D] tracking-tight mb-1.5">

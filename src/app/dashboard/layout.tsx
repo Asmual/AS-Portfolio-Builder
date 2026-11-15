@@ -99,27 +99,27 @@ export default function DashboardLayout({
           </div>
 
           {/* Current Workspace Pill */}
-          <div className="p-3 rounded-2xl bg-[#F8F8EF] border border-[#CDECCB] flex items-center justify-between">
+          <div className="p-3 rounded-2xl bg-[#F8F8EF] border border-[#B8DFDF] flex items-center justify-between">
             <div className="flex items-center gap-2.5">
-              <div className="w-8 h-8 rounded-xl bg-[#064B2B] text-white flex items-center justify-center font-bold text-xs shadow-xs">
+              <div className="w-8 h-8 rounded-xl bg-[#136968] text-white flex items-center justify-center font-bold text-xs shadow-xs">
                 AS
               </div>
               <div>
                 <p className="text-xs font-bold text-[#10291D] truncate max-w-[130px]">
                   Asmual Studios
                 </p>
-                <div className="flex items-center gap-1 text-[10px] text-[#16803D] font-semibold">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#16803D]" />
+                <div className="flex items-center gap-1 text-[10px] text-[#136968] font-semibold">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#136968]" />
                   <span>Pro Plan Active</span>
                 </div>
               </div>
             </div>
             <Link
               href="/dashboard/billing"
-              className="p-1.5 rounded-lg text-gray-400 hover:text-[#064B2B] hover:bg-black/5 transition-colors"
+              className="p-1.5 rounded-lg text-gray-400 hover:text-[#136968] hover:bg-black/5 transition-colors"
               title="Manage Plan"
             >
-              <Sparkles className="w-3.5 h-3.5 text-[#16803D]" />
+              <Sparkles className="w-3.5 h-3.5 text-[#136968]" />
             </Link>
           </div>
 
@@ -136,12 +136,12 @@ export default function DashboardLayout({
                   href={item.href}
                   className={`flex items-center justify-between px-3.5 py-2.5 rounded-xl text-sm font-semibold transition-all ${
                     item.active
-                      ? "bg-[#064B2B] text-white shadow-sm"
-                      : "text-[#10291D]/80 hover:bg-[#eef7ee] hover:text-[#064B2B]"
+                      ? "bg-[#136968] text-white shadow-sm"
+                      : "text-[#10291D]/80 hover:bg-[#E8F4F4] hover:text-[#136968]"
                   }`}
                 >
                   <div className="flex items-center gap-3">
-                    <Icon className={`w-4 h-4 ${item.active ? "text-white" : "text-[#16803D]"}`} />
+                    <Icon className={`w-4 h-4 ${item.active ? "text-white" : "text-[#136968]"}`} />
                     <span>{item.name}</span>
                   </div>
                   {item.active && <ChevronRight className="w-3.5 h-3.5 opacity-80" />}
@@ -176,8 +176,8 @@ export default function DashboardLayout({
         <div className="pt-4 border-t border-[#d8e6db]">
           <div className="flex items-center justify-between p-2 rounded-2xl bg-[#F8F9FA] border border-gray-100">
             <div className="flex items-center gap-2.5 min-w-0">
-              <div className="w-9 h-9 rounded-full bg-[#16803D]/15 text-[#064B2B] flex items-center justify-center font-bold text-xs shrink-0">
-                <User className="w-4 h-4 text-[#064B2B]" />
+              <div className="w-9 h-9 rounded-full bg-[#E8F4F4] text-[#136968] flex items-center justify-center font-bold text-xs shrink-0">
+                <User className="w-4 h-4 text-[#136968]" />
               </div>
               <div className="min-w-0">
                 <p className="text-xs font-bold text-[#10291D] truncate">{userName}</p>
@@ -225,8 +225,8 @@ export default function DashboardLayout({
                   onClick={() => setMobileSidebarOpen(false)}
                   className={`flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-semibold ${
                     item.active
-                      ? "bg-[#064B2B] text-white"
-                      : "text-[#10291D]/80 hover:bg-[#eef7ee]"
+                      ? "bg-[#136968] text-white"
+                      : "text-[#10291D]/80 hover:bg-[#E8F4F4]"
                   }`}
                 >
                   <Icon className="w-4 h-4" />
@@ -274,10 +274,10 @@ export default function DashboardLayout({
           <div className="flex items-center gap-3">
             {/* Quick Live Preview Link */}
             <a
-              href="http://localhost:3000/#themes"
+              href="http://localhost:3001/#themes"
               target="_blank"
               rel="noreferrer"
-              className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-[#eef7ee] text-[#16803D] hover:bg-[#16803D] hover:text-white transition-colors"
+              className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-[#E8F4F4] text-[#136968] hover:bg-[#136968] hover:text-white transition-colors"
             >
               <span>View Theme Showcase</span>
               <ExternalLink className="w-3 h-3" />
@@ -287,7 +287,7 @@ export default function DashboardLayout({
             <Link href="/dashboard/portfolios">
               <Button
                 size="sm"
-                className="rounded-full bg-[#064B2B] hover:bg-[#043820] text-white text-xs font-semibold gap-1.5 shadow-sm h-9 px-4"
+                className="rounded-full bg-[#136968] hover:bg-[#0c4a49] text-white text-xs font-semibold gap-1.5 shadow-sm h-9 px-4 transition-colors"
               >
                 <Plus className="w-3.5 h-3.5" />
                 <span>New Portfolio</span>

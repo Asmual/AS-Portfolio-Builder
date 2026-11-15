@@ -97,16 +97,16 @@ export function PricingSection() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="text-sm sm:text-base text-[#10291D]/75 mt-3"
           >
-            Premium plans starting from just <span className="font-bold text-[#16803D]">$5/month</span>. Launch on your domain with no hidden surprises.
+            Premium plans starting from just <span className="font-bold text-[#136968]">$5/month</span>. Launch on your domain with no hidden surprises.
           </motion.p>
 
           {/* Billing Switcher */}
-          <div className="mt-6 inline-flex items-center gap-1.5 p-1 bg-[#F8F8EF] border border-[#CDECCB] rounded-full shadow-xs">
+          <div className="mt-6 inline-flex items-center gap-1.5 p-1 bg-[#F8F8EF] border border-[#B8DFDF] rounded-full shadow-xs">
             <button
               onClick={() => setBillingCycle("monthly")}
-              className={`px-5 py-2 text-xs sm:text-sm font-semibold rounded-full transition-all ${
+              className={`px-5 py-2 text-xs sm:text-sm font-semibold rounded-full transition-all cursor-pointer ${
                 billingCycle === "monthly"
-                  ? "bg-[#064B2B] text-white shadow-sm"
+                  ? "bg-[#136968] text-white shadow-sm"
                   : "text-[#10291D]/70 hover:text-[#10291D]"
               }`}
             >
@@ -114,14 +114,14 @@ export function PricingSection() {
             </button>
             <button
               onClick={() => setBillingCycle("yearly")}
-              className={`flex items-center gap-1.5 px-5 py-2 text-xs sm:text-sm font-semibold rounded-full transition-all ${
+              className={`flex items-center gap-1.5 px-5 py-2 text-xs sm:text-sm font-semibold rounded-full transition-all cursor-pointer ${
                 billingCycle === "yearly"
-                  ? "bg-[#064B2B] text-white shadow-sm"
+                  ? "bg-[#136968] text-white shadow-sm"
                   : "text-[#10291D]/70 hover:text-[#10291D]"
               }`}
             >
               <span>Annual Billing</span>
-              <span className="px-2 py-0.5 text-[11px] font-bold rounded-full bg-[#16803D] text-white">
+              <span className="px-2 py-0.5 text-[11px] font-bold rounded-full bg-[#249492] text-white">
                 Save 20%
               </span>
             </button>
@@ -139,14 +139,14 @@ export function PricingSection() {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               className={`relative rounded-3xl p-7 flex flex-col justify-between transition-all duration-300 ${
                 plan.isPopular
-                  ? "bg-white border-2 border-[#16803D] shadow-xl md:-translate-y-2"
-                  : "bg-white/80 border border-[#CDECCB]/80 shadow-md hover:shadow-lg hover:border-[#16803D]/50"
+                  ? "bg-white border-2 border-[#136968] shadow-xl md:-translate-y-2"
+                  : "bg-white/80 border border-[#B8DFDF]/80 shadow-md hover:shadow-lg hover:border-[#136968]/50"
               }`}
             >
-              {/* Popular Badge */}
+              {/* Popular Badge (Clean solid flat styling, NO GRADIENTS) */}
               {plan.isPopular && (
-                <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-gradient-to-r from-[#064B2B] to-[#16803D] text-white text-xs font-bold tracking-wide flex items-center gap-1.5 shadow-md">
-                  <Sparkles className="w-3.5 h-3.5" />
+                <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-[#136968] text-white text-xs font-bold tracking-wide flex items-center gap-1.5 shadow-md">
+                  <Sparkles className="w-3.5 h-3.5 text-amber-300" />
                   <span>MOST POPULAR</span>
                 </div>
               )}
@@ -166,14 +166,14 @@ export function PricingSection() {
                     </span>
                     <span className="text-xs text-[#10291D]/60 font-medium">/ month</span>
                   </div>
-                  <p className="text-xs text-[#16803D] font-medium mt-1">{plan.subtext}</p>
+                  <p className="text-xs text-[#136968] font-medium mt-1">{plan.subtext}</p>
                 </div>
 
                 {/* Features List */}
                 <ul className="space-y-3 mb-8">
                   {plan.features.map((feature, fIdx) => (
                     <li key={fIdx} className="flex items-start gap-2.5 text-xs text-[#10291D]">
-                      <div className="w-4 h-4 rounded-full bg-[#eef7ee] text-[#16803D] flex items-center justify-center shrink-0 mt-0.5">
+                      <div className="w-4 h-4 rounded-full bg-[#E8F4F4] text-[#136968] flex items-center justify-center shrink-0 mt-0.5">
                         <Check className="w-2.5 h-2.5 stroke-[3]" />
                       </div>
                       <span className="leading-tight text-[#10291D]/85">{feature}</span>
@@ -187,10 +187,10 @@ export function PricingSection() {
                 <Button
                   variant={plan.buttonVariant}
                   onClick={() => handleSelectPlan(plan.name)}
-                  className={`w-full h-11 rounded-full font-semibold text-xs tracking-wide transition-all ${
+                  className={`w-full h-11 rounded-full font-semibold text-xs tracking-wide transition-all cursor-pointer ${
                     plan.isPopular
-                      ? "bg-[#064B2B] hover:bg-[#043820] text-white shadow-md hover:shadow-lg"
-                      : "bg-[#F8F8EF] hover:bg-white text-[#10291D] border border-[#16803D]/30"
+                      ? "bg-[#136968] hover:bg-[#0c4a49] text-white shadow-md hover:shadow-lg"
+                      : "bg-[#F8F8EF] hover:bg-[#E8F4F4] text-[#10291D] border border-[#B8DFDF]"
                   }`}
                 >
                   {plan.cta}
@@ -203,7 +203,7 @@ export function PricingSection() {
         {/* Enterprise / Questions banner */}
         <div className="mt-12 text-center text-xs text-[#10291D]/70">
           Need custom enterprise requirements or student discounts?{" "}
-          <Link href="#contact" className="font-semibold text-[#16803D] hover:underline">
+          <Link href="#contact" className="font-semibold text-[#136968] hover:text-[#249492] hover:underline">
             Talk to our founder team →
           </Link>
         </div>

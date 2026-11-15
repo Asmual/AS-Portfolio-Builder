@@ -130,7 +130,7 @@ export default function DomainsPage() {
 
         <Button
           onClick={() => setDialogOpen(true)}
-          className="rounded-full bg-[#064B2B] hover:bg-[#043820] text-white font-bold text-xs gap-2 h-10 px-5 shadow-sm"
+          className="rounded-full bg-[#136968] hover:bg-[#0c4a49] text-white font-bold text-xs gap-2 h-10 px-5 shadow-sm transition-colors"
         >
           <Plus className="w-4 h-4" />
           <span>Connect Domain</span>
@@ -138,9 +138,9 @@ export default function DomainsPage() {
       </div>
 
       {/* DNS Configuration Guide Card */}
-      <div className="p-6 rounded-3xl bg-white border border-[#CDECCB] shadow-xs space-y-4">
+      <div className="p-6 rounded-3xl bg-white border border-[#B8DFDF] shadow-xs space-y-4">
         <div className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-xl bg-[#eef7ee] text-[#16803D] flex items-center justify-center">
+          <div className="w-8 h-8 rounded-xl bg-[#E8F4F4] text-[#136968] flex items-center justify-center">
             <Globe className="w-4 h-4" />
           </div>
           <div>
@@ -160,16 +160,16 @@ export default function DomainsPage() {
               <span className="font-bold text-[#10291D]">Type: CNAME</span>
               <button
                 onClick={() => handleCopy("cname.asportfolio.site")}
-                className="text-gray-400 hover:text-[#064B2B] flex items-center gap-1 text-[11px]"
+                className="text-gray-400 hover:text-[#136968] flex items-center gap-1 text-[11px]"
               >
                 <Copy className="w-3 h-3" />
                 <span>Copy Value</span>
               </button>
             </div>
             <div className="text-xs font-mono text-gray-700 bg-white p-2.5 rounded-xl border border-gray-200">
-              Host: <span className="text-[#16803D] font-bold">@</span> or <span className="text-[#16803D] font-bold">portfolio</span>
+              Host: <span className="text-[#136968] font-bold">@</span> or <span className="text-[#136968] font-bold">portfolio</span>
               <br />
-              Target: <span className="text-[#064B2B] font-bold">cname.asportfolio.site</span>
+              Target: <span className="text-[#136968] font-bold">cname.asportfolio.site</span>
             </div>
           </div>
 
@@ -179,16 +179,16 @@ export default function DomainsPage() {
               <span className="font-bold text-[#10291D]">Type: TXT (Ownership Check)</span>
               <button
                 onClick={() => handleCopy("as-verify-platform-auth")}
-                className="text-gray-400 hover:text-[#064B2B] flex items-center gap-1 text-[11px]"
+                className="text-gray-400 hover:text-[#136968] flex items-center gap-1 text-[11px]"
               >
                 <Copy className="w-3 h-3" />
                 <span>Copy Value</span>
               </button>
             </div>
             <div className="text-xs font-mono text-gray-700 bg-white p-2.5 rounded-xl border border-gray-200">
-              Host: <span className="text-[#16803D] font-bold">_as-verify</span>
+              Host: <span className="text-[#136968] font-bold">_as-verify</span>
               <br />
-              Value: <span className="text-[#064B2B] font-bold">as-verify-platform-auth</span>
+              Value: <span className="text-[#136968] font-bold">as-verify-platform-auth</span>
             </div>
           </div>
         </div>
@@ -212,7 +212,7 @@ export default function DomainsPage() {
                 className="p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 hover:bg-gray-50/50 transition-colors"
               >
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-2xl bg-emerald-50 text-[#16803D] flex items-center justify-center shrink-0">
+                  <div className="w-10 h-10 rounded-2xl bg-[#E8F4F4] text-[#136968] flex items-center justify-center shrink-0">
                     <ShieldCheck className="w-5 h-5 stroke-[2.2]" />
                   </div>
                   <div>
@@ -271,7 +271,7 @@ export default function DomainsPage() {
                 value={domainInput}
                 onChange={(e) => setDomainInput(e.target.value)}
                 placeholder="e.g. yourname.com"
-                className="w-full h-11 px-3.5 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-[#16803D]"
+                className="w-full h-11 px-3.5 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-[#136968]"
               />
             </div>
 
@@ -287,7 +287,7 @@ export default function DomainsPage() {
               <Button
                 type="submit"
                 disabled={isSubmitting}
-                className="rounded-full bg-[#064B2B] hover:bg-[#043820] text-white text-xs font-semibold px-6"
+                className="rounded-full bg-[#136968] hover:bg-[#0c4a49] text-white text-xs font-semibold px-6 transition-colors"
               >
                 {isSubmitting ? "Connecting..." : "Verify & Connect"}
               </Button>

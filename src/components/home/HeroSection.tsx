@@ -48,12 +48,12 @@ export function HeroSection() {
         <svg width="60" height="60" viewBox="0 0 100 100" fill="none">
           <path
             d="M15 85C12 55 42 22 88 8C78 42 52 82 15 85Z"
-            fill="#2e6c34"
+            fill="#136968"
             fillOpacity="0.4"
           />
           <path
             d="M25 75C32 50 52 32 82 18"
-            stroke="#064B2B"
+            stroke="#249492"
             strokeWidth="2.5"
             strokeLinecap="round"
             strokeOpacity="0.45"
@@ -81,11 +81,11 @@ export function HeroSection() {
             <h1 className="text-4xl sm:text-5xl lg:text-[56px] font-extrabold tracking-tight text-[#10291D] leading-[1.12]">
               Create Your <br />
               Portfolio in{" "}
-              <span className="text-[#16803D] relative inline-block">
+              <span className="text-[#136968] relative inline-block">
                 One Click
                 {/* Decorative underline brush stroke */}
                 <svg
-                  className="absolute left-0 -bottom-2 w-full h-3 text-[#16803D]/60"
+                  className="absolute left-0 -bottom-2 w-full h-3 text-[#136968]/70"
                   viewBox="0 0 200 8"
                   fill="none"
                   preserveAspectRatio="none"
@@ -108,25 +108,25 @@ export function HeroSection() {
 
             {/* Dual CTAs */}
             <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
-              {/* "Browse Themes": solid green (#16803D) background, white text, right arrow */}
+              {/* "Browse Themes": solid primary teal (#136968), hover dark teal (#0c4a49) */}
               <Button
                 variant="default"
                 size="lg"
                 onClick={handleBrowseThemes}
-                className="w-full sm:w-auto px-8 py-3 gap-2 font-semibold text-base bg-[#16803D] hover:bg-[#064B2B] text-white rounded-full shadow-md hover:shadow-lg transition-all h-12 cursor-pointer"
+                className="w-full sm:w-auto px-8 py-3 gap-2 font-semibold text-base bg-[#136968] hover:bg-[#0c4a49] text-white rounded-full shadow-md hover:shadow-lg transition-all h-12 cursor-pointer"
               >
                 <span>Browse Themes</span>
                 <ArrowRight className="w-4 h-4 stroke-[2.2]" />
               </Button>
 
-              {/* "Watch Demo": cream/white background, dark green text, clearly visible 2px green border */}
+              {/* "Watch Demo": cream background, dark text, primary teal border (#136968) */}
               <Button
                 variant="outline"
                 size="lg"
                 onClick={() => setDemoOpen(true)}
-                className="w-full sm:w-auto px-7 py-3 gap-2.5 font-semibold text-base bg-[#F8F8EF] hover:bg-white text-[#10291D] border-2 border-[#16803D] rounded-full shadow-xs transition-all h-12 cursor-pointer"
+                className="w-full sm:w-auto px-7 py-3 gap-2.5 font-semibold text-base bg-[#F8F8EF] hover:bg-white text-[#10291D] border-2 border-[#136968] rounded-full shadow-xs transition-all h-12 cursor-pointer"
               >
-                <div className="w-6 h-6 rounded-full bg-[#16803D]/15 flex items-center justify-center text-[#16803D]">
+                <div className="w-6 h-6 rounded-full bg-[#E8F4F4] flex items-center justify-center text-[#136968]">
                   <Play className="w-3.5 h-3.5 fill-current ml-0.5" />
                 </div>
                 <span>Watch Demo</span>
@@ -136,15 +136,15 @@ export function HeroSection() {
             {/* Feature badges row */}
             <div className="pt-4 flex flex-wrap items-center justify-center lg:justify-start gap-4 sm:gap-6 text-xs text-[#10291D]/75">
               <div className="flex items-center gap-1.5 font-medium">
-                <CheckCircle2 className="w-4 h-4 text-[#16803D]" />
+                <CheckCircle2 className="w-4 h-4 text-[#136968]" />
                 <span>Custom Domains & SSL</span>
               </div>
               <div className="flex items-center gap-1.5 font-medium">
-                <CheckCircle2 className="w-4 h-4 text-[#16803D]" />
+                <CheckCircle2 className="w-4 h-4 text-[#136968]" />
                 <span>Plans From $5/mo</span>
               </div>
               <div className="flex items-center gap-1.5 font-medium">
-                <CheckCircle2 className="w-4 h-4 text-[#16803D]" />
+                <CheckCircle2 className="w-4 h-4 text-[#136968]" />
                 <span>Instant Live Customizer</span>
               </div>
             </div>
@@ -159,19 +159,9 @@ export function HeroSection() {
           <div className="relative w-full flex items-center justify-center min-h-[460px] sm:min-h-[520px] lg:min-h-[560px]">
             
             {/* 
-              Organic Curved Shape & Soft Radial Fade (Strictly confined to Right Side)
-              Combines smooth organic SVG wave curves and soft emerald glow
+              Harmonious Solid Curved Shape in Primary #136968 & Secondary #249492
             */}
-            <div className="absolute inset-0 -inset-x-4 sm:-inset-x-8 rounded-[40px] sm:rounded-[48px] overflow-hidden pointer-events-none">
-              {/* Soft Ambient Radial Glow for fade vibe */}
-              <div
-                className="absolute inset-0 opacity-90"
-                style={{
-                  background:
-                    "radial-gradient(circle at 65% 45%, #064B2B 0%, #0a5832 45%, #16803D 70%, rgba(22, 128, 61, 0.4) 85%, transparent 100%)",
-                }}
-              />
-
+            <div className="absolute inset-0 -inset-x-4 sm:-inset-x-8 rounded-[40px] sm:rounded-[48px] overflow-hidden pointer-events-none bg-[#136968]">
               {/* Organic Flowing Curves SVG inside the right container */}
               <svg
                 viewBox="0 0 700 700"
@@ -180,30 +170,29 @@ export function HeroSection() {
                 className="absolute inset-0 w-full h-full object-cover"
                 preserveAspectRatio="none"
               >
-                {/* Outermost smooth wave with soft opacity */}
+                {/* Outermost smooth wave with soft secondary teal opacity */}
                 <path
                   d="M160 0 C 40 180, 20 420, 120 700 L 700 700 L 700 0 Z"
-                  fill="#16803D"
-                  fillOpacity="0.4"
+                  fill="#249492"
+                  fillOpacity="0.35"
                 />
                 {/* Middle organic wave */}
                 <path
                   d="M240 0 C 100 200, 90 460, 200 700 L 700 700 L 700 0 Z"
-                  fill="#064B2B"
-                  fillOpacity="0.8"
+                  fill="#187a78"
+                  fillOpacity="0.75"
                 />
-                {/* Deep forest core */}
+                {/* Primary deep core */}
                 <path
                   d="M320 0 C 180 220, 160 480, 280 700 L 700 700 L 700 0 Z"
-                  fill="#064B2B"
-                  fillOpacity="0.95"
+                  fill="#136968"
                 />
-                {/* Curved aesthetic glowing border contour */}
+                {/* Curved aesthetic subtle border contour */}
                 <path
                   d="M240 0 C 100 200, 90 460, 200 700"
-                  stroke="#CDECCB"
-                  strokeWidth="2.5"
-                  strokeOpacity="0.5"
+                  stroke="#E8F4F4"
+                  strokeWidth="2"
+                  strokeOpacity="0.4"
                   fill="none"
                 />
               </svg>
@@ -269,7 +258,7 @@ export function HeroSection() {
                   <span className="text-[10px] text-gray-500 font-mono font-medium">
                     live • ecobuild-studio.dev
                   </span>
-                  <div className="w-2 h-2 rounded-full bg-[#16803D] animate-ping" />
+                  <div className="w-2 h-2 rounded-full bg-[#136968] animate-ping" />
                 </div>
                 <div className="relative w-full h-[calc(100%-20px)] rounded-lg overflow-hidden bg-gray-50 mt-1">
                   <Image
@@ -285,17 +274,17 @@ export function HeroSection() {
 
               {/* Floating Pill Badges around the 3D cards */}
               {/* Top-Right Badge: "Your Domain or Subdomain" */}
-              <div className="absolute -top-3 right-4 z-30 flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/95 backdrop-blur-md shadow-lg border border-[#CDECCB] text-[#10291D] text-xs font-semibold animate-bounce duration-1000">
-                <div className="w-5 h-5 rounded-full bg-[#eef7ee] text-[#16803D] flex items-center justify-center">
+              <div className="absolute -top-3 right-4 z-30 flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/95 backdrop-blur-md shadow-lg border border-[#B8DFDF] text-[#10291D] text-xs font-semibold animate-bounce duration-1000">
+                <div className="w-5 h-5 rounded-full bg-[#E8F4F4] text-[#136968] flex items-center justify-center">
                   <Globe className="w-3 h-3 stroke-[2.5]" />
                 </div>
                 <span>Custom Domain</span>
               </div>
 
               {/* Bottom-Left Badge: "Customize Easily" */}
-              <div className="absolute -bottom-2 left-2 z-30 flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/95 backdrop-blur-md shadow-lg border border-[#CDECCB] text-[#10291D] text-xs font-semibold">
-                <div className="w-5 h-5 rounded-full bg-[#eef7ee] text-[#16803D] flex items-center justify-center">
-                  <Palette className="w-3 h-3 text-[#16803D]" />
+              <div className="absolute -bottom-2 left-2 z-30 flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/95 backdrop-blur-md shadow-lg border border-[#B8DFDF] text-[#10291D] text-xs font-semibold">
+                <div className="w-5 h-5 rounded-full bg-[#E8F4F4] text-[#136968] flex items-center justify-center">
+                  <Palette className="w-3 h-3 text-[#136968]" />
                 </div>
                 <span>Customize Easily</span>
               </div>
@@ -318,10 +307,10 @@ export function HeroSection() {
           className="w-full h-12 sm:h-16 lg:h-20 object-fill block"
           preserveAspectRatio="none"
         >
-          {/* Layer 1: Soft ambient green wave contour */}
+          {/* Layer 1: Soft ambient teal wave contour */}
           <path
             d="M0 45 C 180 10, 360 80, 540 30 C 720 -15, 900 70, 1080 25 C 1260 -15, 1380 50, 1440 30 L 1440 90 L 0 90 Z"
-            fill="#16803D"
+            fill="#136968"
             fillOpacity="0.18"
           />
           {/* Layer 2: Main organic wave transition */}
@@ -334,10 +323,10 @@ export function HeroSection() {
 
       {/* Watch Demo Modal / Dialog */}
       <Dialog open={demoOpen} onOpenChange={setDemoOpen}>
-        <DialogContent className="sm:max-w-md bg-white border border-[#CDECCB]">
+        <DialogContent className="sm:max-w-md bg-white border border-[#B8DFDF]">
           <DialogHeader>
             <DialogTitle className="flex items-center gap-2 text-[#10291D]">
-              <span className="p-1.5 rounded-lg bg-[#eef7ee] text-[#16803D]">
+              <span className="p-1.5 rounded-lg bg-[#E8F4F4] text-[#136968]">
                 <Play className="w-4 h-4 fill-current" />
               </span>
               <span>AS Portfolio Builder Preview</span>
@@ -348,22 +337,22 @@ export function HeroSection() {
           </DialogHeader>
 
           <div className="space-y-3 py-2 text-sm text-[#10291D]">
-            <div className="flex items-start gap-3 p-3 rounded-xl bg-[#F8F8EF] border border-[#CDECCB]/60">
-              <CheckCircle2 className="w-5 h-5 text-[#16803D] shrink-0 mt-0.5" />
+            <div className="flex items-start gap-3 p-3 rounded-xl bg-[#F8F8EF] border border-[#B8DFDF]/60">
+              <CheckCircle2 className="w-5 h-5 text-[#136968] shrink-0 mt-0.5" />
               <div>
                 <p className="font-semibold text-[#10291D]">Step 1: Pick a Designer Theme</p>
                 <p className="text-xs text-[#10291D]/70">Select from multiple modern developer & designer themes.</p>
               </div>
             </div>
-            <div className="flex items-start gap-3 p-3 rounded-xl bg-[#F8F8EF] border border-[#CDECCB]/60">
-              <CheckCircle2 className="w-5 h-5 text-[#16803D] shrink-0 mt-0.5" />
+            <div className="flex items-start gap-3 p-3 rounded-xl bg-[#F8F8EF] border border-[#B8DFDF]/60">
+              <CheckCircle2 className="w-5 h-5 text-[#136968] shrink-0 mt-0.5" />
               <div>
                 <p className="font-semibold text-[#10291D]">Step 2: Real-Time Live Customizer</p>
                 <p className="text-xs text-[#10291D]/70">Edit projects, bio, skills, and theme colors with instant preview.</p>
               </div>
             </div>
-            <div className="flex items-start gap-3 p-3 rounded-xl bg-[#F8F8EF] border border-[#CDECCB]/60">
-              <CheckCircle2 className="w-5 h-5 text-[#16803D] shrink-0 mt-0.5" />
+            <div className="flex items-start gap-3 p-3 rounded-xl bg-[#F8F8EF] border border-[#B8DFDF]/60">
+              <CheckCircle2 className="w-5 h-5 text-[#136968] shrink-0 mt-0.5" />
               <div>
                 <p className="font-semibold text-[#10291D]">Step 3: Connect Domain & Publish</p>
                 <p className="text-xs text-[#10291D]/70">Deploy to username.asportfoliobuilder.com or your custom domain with SSL.</p>
@@ -377,7 +366,7 @@ export function HeroSection() {
             </Button>
             <Button
               variant="default"
-              className="bg-[#064B2B] hover:bg-[#043820] text-white rounded-full"
+              className="bg-[#136968] hover:bg-[#0c4a49] text-white rounded-full"
               onClick={() => {
                 setDemoOpen(false);
                 handleBrowseThemes();

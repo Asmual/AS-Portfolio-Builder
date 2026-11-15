@@ -99,8 +99,8 @@ export function ThemesSection() {
                 onClick={() => setActiveCategory(cat)}
                 className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-all ${
                   activeCategory === cat
-                    ? "bg-[#064B2B] text-white shadow-xs"
-                    : "bg-white/80 hover:bg-white text-[#10291D]/75 border border-[#dbe8df]"
+                    ? "bg-[#136968] text-white shadow-xs"
+                    : "bg-white/80 hover:bg-[#E8F4F4] text-[#10291D]/75 border border-[#B8DFDF]"
                 }`}
               >
                 {cat}
@@ -118,7 +118,7 @@ export function ThemesSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: idx * 0.12 }}
-              className="group bg-white rounded-2xl border border-[#dbe8df] overflow-hidden shadow-xs hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between"
+              className="group bg-white rounded-2xl border border-[#B8DFDF]/80 overflow-hidden shadow-xs hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between"
             >
               <div>
                 {/* Preview Image with Badge */}
@@ -130,12 +130,12 @@ export function ThemesSection() {
                     className="object-cover object-top group-hover:scale-105 transition-transform duration-500"
                   />
                   {theme.badge && (
-                    <span className="absolute top-3 left-3 px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-[#064B2B] text-white shadow-xs">
+                    <span className="absolute top-3 left-3 px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-[#136968] text-white shadow-xs">
                       {theme.badge}
                     </span>
                   )}
                   {theme.isPremium ? (
-                    <span className="absolute top-3 right-3 px-2 py-0.5 rounded-full text-[11px] font-bold bg-[#CDECCB] text-[#064B2B]">
+                    <span className="absolute top-3 right-3 px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-[#E8F4F4] text-[#136968] border border-[#B8DFDF]">
                       Pro Tier
                     </span>
                   ) : (
@@ -148,7 +148,7 @@ export function ThemesSection() {
                 {/* Content */}
                 <div className="p-5 space-y-3">
                   <div>
-                    <span className="text-[11px] font-bold uppercase tracking-wider text-[#16803D]">
+                    <span className="text-[11px] font-bold uppercase tracking-wider text-[#249492]">
                       {theme.category}
                     </span>
                     <h3 className="text-base font-bold text-[#10291D] tracking-tight mt-0.5">
@@ -163,7 +163,7 @@ export function ThemesSection() {
                   <div className="grid grid-cols-2 gap-1.5 pt-1 border-t border-gray-100">
                     {theme.features.map((feat) => (
                       <div key={feat} className="flex items-center gap-1.5 text-[11px] text-[#10291D]/80">
-                        <Check className="w-3 h-3 text-[#16803D] shrink-0 stroke-[2.5]" />
+                        <Check className="w-3 h-3 text-[#136968] shrink-0 stroke-[2.5]" />
                         <span className="truncate">{feat}</span>
                       </div>
                     ))}
@@ -176,7 +176,7 @@ export function ThemesSection() {
                 <Button
                   variant="default"
                   onClick={() => handleSelectTheme(theme.name)}
-                  className="w-full h-10 rounded-full text-xs font-semibold bg-[#16803D] hover:bg-[#064B2B] text-white gap-2 shadow-xs"
+                  className="w-full h-10 rounded-full text-xs font-semibold bg-[#136968] hover:bg-[#0c4a49] text-white gap-2 shadow-xs transition-colors cursor-pointer"
                 >
                   <span>Use This Theme</span>
                   <ArrowRight className="w-3.5 h-3.5" />

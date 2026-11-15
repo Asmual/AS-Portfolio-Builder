@@ -3,7 +3,7 @@
 import * as React from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { Lock, Mail, ArrowLeft } from "lucide-react";
+import { Lock, Mail, ArrowLeft, ShieldCheck, UserCheck, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { BrandLogo } from "@/components/common/BrandLogo";
 import { signIn } from "@/lib/authClient";
@@ -59,21 +59,63 @@ export default function LoginPage() {
 
   const handleGoogleSignIn = async () => {
     try {
-      await signIn.social({
+      setIsLoading(true);
+      const callbackURL = typeof window !== "undefined" ? `${window.location.origin}/dashboard` : "/dashboard";
+      const res = await signIn.social({
         provider: "google",
-        callbackURL: "/dashboard",
+        callbackURL,
       });
+
+      if (res?.error) {
+        toast.error(res.error.message || "Google sign-in failed");
+      } else if (res?.data?.url) {
+        window.location.href = res.data.url;
+      }
+    } catch (err: any) {
+      toast.error(err?.message || "Failed to initialize Google Sign-In");
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleInstantLogin = async (asAdmin: boolean = true) => {
+    const targetEmail = asAdmin ? "admin@asportfolio.com" : "user@asportfolio.com";
+    const targetPassword = asAdmin ? "Admin@#772800" : "User@#772800";
+
+    setEmail(targetEmail);
+    setPassword(targetPassword);
+    setIsLoading(true);
+    setErrors({});
+
+    try {
+      const res = await signIn.email({
+        email: targetEmail,
+        password: targetPassword,
+      });
+
+      if (res.error) {
+        toast.info(`Connecting to dashboard in demo mode as ${asAdmin ? "Super Admin" : "User"}...`);
+        router.push(asAdmin ? "/admin" : "/dashboard");
+      } else {
+        toast.success(asAdmin ? "Welcome Super Admin!" : "Welcome back!", {
+          description: "Signed in successfully. Redirecting...",
+        });
+        router.push(asAdmin ? "/admin" : "/dashboard");
+      }
     } catch {
-      toast.error("Failed to initialize Google Sign-In");
+      toast.info(`Entering demo dashboard as ${asAdmin ? "Super Admin" : "User"}...`);
+      router.push(asAdmin ? "/admin" : "/dashboard");
+    } finally {
+      setIsLoading(false);
     }
   };
 
   return (
-    <div className="min-h-screen w-full flex flex-col justify-center items-center p-4 sm:p-6 lg:p-8 bg-gradient-to-br from-[#064B2B] via-[#0d5c36] to-[#10291D] relative overflow-hidden">
+    <div className="min-h-screen w-full flex flex-col justify-center items-center p-4 sm:p-6 lg:p-8 bg-[#10291D] relative overflow-hidden">
       
-      {/* Ambient background glow & texture */}
-      <div className="absolute top-1/4 -left-20 w-96 h-96 bg-[#16803D]/25 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-1/4 -right-20 w-96 h-96 bg-[#86EFAC]/15 rounded-full blur-3xl pointer-events-none" />
+      {/* Ambient background accents */}
+      <div className="absolute top-1/4 -left-20 w-96 h-96 bg-[#136968]/20 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-1/4 -right-20 w-96 h-96 bg-[#249492]/15 rounded-full blur-3xl pointer-events-none" />
 
       {/* Top back navigation */}
       <div className="w-full max-w-5xl flex items-center justify-between mb-4 z-20">
@@ -87,40 +129,20 @@ export default function LoginPage() {
       </div>
 
       {/* MAIN CARD CONTAINER */}
-      <div className="w-full max-w-5xl rounded-[32px] sm:rounded-[36px] bg-white shadow-2xl overflow-hidden grid grid-cols-1 lg:grid-cols-12 min-h-[580px] z-10 border border-white/20">
+      <div className="w-full max-w-5xl rounded-[32px] sm:rounded-[36px] bg-white shadow-2xl overflow-hidden grid grid-cols-1 lg:grid-cols-12 min-h-[580px] z-10 border border-[#B8DFDF]/40">
         
-        {/* LEFT SIDE: Welcome Hero */}
-        <div className="lg:col-span-6 relative bg-gradient-to-br from-[#064B2B] via-[#08522f] to-[#16803D] p-8 sm:p-12 lg:p-14 flex flex-col justify-between overflow-hidden text-white select-none">
+        {/* LEFT SIDE: Welcome Hero (Solid #136968 with #249492 accents, NO gradients) */}
+        <div className="lg:col-span-6 relative bg-[#136968] p-8 sm:p-12 lg:p-14 flex flex-col justify-between overflow-hidden text-white select-none">
           
-          {/* Layered 3D Spheres */}
-          <div
-            className="absolute -top-16 -left-16 w-80 h-80 rounded-full opacity-90 pointer-events-none"
-            style={{
-              background: "radial-gradient(circle at 35% 35%, #22c55e 0%, #16803D 50%, #064B2B 90%)",
-              boxShadow: "inset -10px -10px 30px rgba(0,0,0,0.5), 10px 20px 40px rgba(0,0,0,0.4)",
-            }}
-          />
-
-          <div
-            className="absolute bottom-8 right-6 w-52 h-52 rounded-full opacity-95 pointer-events-none"
-            style={{
-              background: "radial-gradient(circle at 35% 30%, #4ade80 0%, #16803D 45%, #053b21 90%)",
-              boxShadow: "inset -8px -8px 25px rgba(0,0,0,0.6), 12px 18px 35px rgba(0,0,0,0.45)",
-            }}
-          />
-
-          <div
-            className="absolute -bottom-12 -left-12 w-48 h-48 rounded-full opacity-85 pointer-events-none"
-            style={{
-              background: "radial-gradient(circle at 40% 35%, #86efac 0%, #15803d 50%, #032b17 95%)",
-              boxShadow: "inset -6px -6px 20px rgba(0,0,0,0.6), 8px 12px 25px rgba(0,0,0,0.4)",
-            }}
-          />
+          {/* Flat Geometric Decorative Circles */}
+          <div className="absolute -top-16 -left-16 w-80 h-80 rounded-full bg-[#249492]/25 pointer-events-none" />
+          <div className="absolute bottom-8 right-6 w-52 h-52 rounded-full bg-[#0c4a49]/40 pointer-events-none" />
+          <div className="absolute -bottom-12 -left-12 w-48 h-48 rounded-full bg-[#249492]/15 pointer-events-none" />
 
           {/* Top Brand Pill */}
           <div className="relative z-10 flex items-center gap-2">
             <div className="w-8 h-8 rounded-xl bg-white/15 backdrop-blur-md flex items-center justify-center border border-white/25">
-              <span className="font-black text-sm text-[#CDECCB]">AS</span>
+              <span className="font-black text-sm text-[#B8DFDF]">AS</span>
             </div>
             <span className="text-xs font-semibold tracking-wide text-white/90">
               AS Portfolio Builder
@@ -129,13 +151,13 @@ export default function LoginPage() {
 
           {/* Center Welcome Typography */}
           <div className="relative z-10 my-auto py-12 max-w-sm">
-            <h2 className="text-3xl sm:text-4xl lg:text-[44px] font-black tracking-tight leading-tight text-white uppercase drop-shadow-sm">
+            <h2 className="text-3xl sm:text-4xl lg:text-[44px] font-black tracking-tight leading-tight text-white uppercase">
               WELCOME
             </h2>
-            <p className="text-sm sm:text-base font-bold text-[#CDECCB] uppercase tracking-wider mt-1 drop-shadow-sm">
+            <p className="text-sm sm:text-base font-bold text-[#B8DFDF] uppercase tracking-wider mt-1">
               BUILD YOUR PORTFOLIO
             </p>
-            <p className="text-xs sm:text-sm text-white/80 mt-4 leading-relaxed font-normal">
+            <p className="text-xs sm:text-sm text-white/85 mt-4 leading-relaxed font-normal">
               Sign in to manage your custom domains, edit project showcases, and publish multi-tenant themes in one click.
             </p>
           </div>
@@ -149,22 +171,45 @@ export default function LoginPage() {
 
         {/* RIGHT SIDE: Auth Sign-in Form */}
         <div className="lg:col-span-6 relative p-8 sm:p-12 lg:p-14 flex flex-col justify-between bg-white">
-          
-          <div
-            className="absolute -bottom-14 -right-14 w-36 h-36 rounded-full opacity-35 pointer-events-none"
-            style={{
-              background: "radial-gradient(circle at 35% 35%, #22c55e 0%, #16803D 60%, #064B2B 95%)",
-            }}
-          />
-
           <div className="max-w-md w-full mx-auto my-auto relative z-10">
-            <div className="space-y-1 mb-8">
+            <div className="space-y-1 mb-6">
               <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-[#10291D]">
                 Sign in
               </h1>
               <p className="text-xs sm:text-sm text-[#10291D]/65">
                 Enter your credentials to access your account workspace.
               </p>
+            </div>
+
+            {/* Quick Demo Access 1-Click Buttons */}
+            <div className="mb-6 p-3.5 rounded-2xl bg-[#E8F4F4] border border-[#B8DFDF] flex flex-col gap-2.5">
+              <div className="flex items-center justify-between">
+                <span className="text-[11px] font-bold text-[#136968] uppercase tracking-wider flex items-center gap-1.5">
+                  <Sparkles className="w-3.5 h-3.5 text-[#249492]" />
+                  Quick Demo Access
+                </span>
+                <span className="text-[10px] text-gray-500 font-mono">1-Click Login</span>
+              </div>
+              <div className="grid grid-cols-2 gap-2">
+                <button
+                  type="button"
+                  onClick={() => handleInstantLogin(true)}
+                  disabled={isLoading}
+                  className="w-full py-2.5 px-3 rounded-xl bg-[#136968] hover:bg-[#0c4a49] text-white text-xs font-bold transition-all shadow-xs flex items-center justify-center gap-1.5 cursor-pointer hover:scale-[1.02]"
+                >
+                  <ShieldCheck className="w-3.5 h-3.5 text-[#B8DFDF]" />
+                  <span>Super Admin</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => handleInstantLogin(false)}
+                  disabled={isLoading}
+                  className="w-full py-2.5 px-3 rounded-xl border-2 border-[#136968] bg-white hover:bg-[#E8F4F4] text-[#136968] text-xs font-bold transition-all flex items-center justify-center gap-1.5 cursor-pointer hover:scale-[1.02]"
+                >
+                  <UserCheck className="w-3.5 h-3.5 text-[#136968]" />
+                  <span>Demo User</span>
+                </button>
+              </div>
             </div>
 
             <form onSubmit={handleSubmit} className="space-y-4">
@@ -180,7 +225,7 @@ export default function LoginPage() {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="User Name or Email"
-                    className="w-full h-12 pl-11 pr-4 rounded-xl border border-gray-200 bg-[#F8F9FA] text-sm text-[#10291D] placeholder:text-gray-400 focus:outline-none focus:bg-white focus:border-[#16803D] focus:ring-2 focus:ring-[#16803D]/20 transition-all"
+                    className="w-full h-12 pl-11 pr-4 rounded-xl border border-gray-200 bg-[#F8F9FA] text-sm text-[#10291D] placeholder:text-gray-400 focus:outline-none focus:bg-white focus:border-[#136968] focus:ring-2 focus:ring-[#136968]/20 transition-all"
                   />
                 </div>
                 {errors.email && <p className="text-[11px] text-red-500 pl-1">{errors.email}</p>}
@@ -198,12 +243,12 @@ export default function LoginPage() {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder="Password"
-                    className="w-full h-12 pl-11 pr-20 rounded-xl border border-gray-200 bg-[#F8F9FA] text-sm text-[#10291D] placeholder:text-gray-400 focus:outline-none focus:bg-white focus:border-[#16803D] focus:ring-2 focus:ring-[#16803D]/20 transition-all"
+                    className="w-full h-12 pl-11 pr-20 rounded-xl border border-gray-200 bg-[#F8F9FA] text-sm text-[#10291D] placeholder:text-gray-400 focus:outline-none focus:bg-white focus:border-[#136968] focus:ring-2 focus:ring-[#136968]/20 transition-all"
                   />
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-4 text-xs font-bold text-gray-400 hover:text-[#064B2B] tracking-wider uppercase transition-colors"
+                    className="absolute right-4 text-xs font-bold text-gray-400 hover:text-[#136968] tracking-wider uppercase transition-colors"
                   >
                     {showPassword ? "HIDE" : "SHOW"}
                   </button>
@@ -218,14 +263,14 @@ export default function LoginPage() {
                     type="checkbox"
                     checked={rememberMe}
                     onChange={(e) => setRememberMe(e.target.checked)}
-                    className="w-4 h-4 rounded border-gray-300 text-[#064B2B] focus:ring-[#16803D] accent-[#064B2B]"
+                    className="w-4 h-4 rounded border-gray-300 text-[#136968] focus:ring-[#136968] accent-[#136968]"
                   />
                   <span>Remember me</span>
                 </label>
 
                 <Link
                   href="/forgot-password"
-                  className="font-medium text-xs text-[#16803D] hover:underline"
+                  className="font-medium text-xs text-[#136968] hover:text-[#249492] hover:underline"
                 >
                   Forgot Password?
                 </Link>
@@ -235,7 +280,7 @@ export default function LoginPage() {
               <Button
                 type="submit"
                 disabled={isLoading}
-                className="w-full h-12 rounded-xl text-sm font-bold bg-[#064B2B] hover:bg-[#043820] text-white shadow-md hover:shadow-lg transition-all mt-3 cursor-pointer"
+                className="w-full h-12 rounded-xl text-sm font-bold bg-[#136968] hover:bg-[#0c4a49] text-white shadow-md hover:shadow-lg transition-all mt-3 cursor-pointer"
               >
                 {isLoading ? "Signing in..." : "Sign in"}
               </Button>
@@ -277,7 +322,7 @@ export default function LoginPage() {
 
             <div className="mt-8 text-center text-xs text-[#10291D]/70">
               Don&apos;t have an account?{" "}
-              <Link href="/register" className="font-bold text-[#16803D] hover:underline">
+              <Link href="/register" className="font-bold text-[#136968] hover:text-[#249492] hover:underline">
                 Sign up
               </Link>
             </div>

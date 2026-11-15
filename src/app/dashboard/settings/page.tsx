@@ -36,7 +36,7 @@ export default function SettingsPage() {
       {/* Profile Form */}
       <div className="p-6 sm:p-8 rounded-3xl bg-white border border-[#d8e6db] shadow-xs space-y-6">
         <div className="flex items-center gap-3 pb-4 border-b border-gray-100">
-          <div className="w-10 h-10 rounded-2xl bg-[#eef7ee] text-[#16803D] flex items-center justify-center font-bold">
+          <div className="w-10 h-10 rounded-2xl bg-[#E8F4F4] text-[#136968] flex items-center justify-center font-bold">
             <User className="w-5 h-5" />
           </div>
           <div>
@@ -53,7 +53,7 @@ export default function SettingsPage() {
                 type="text"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                className="w-full h-11 px-3.5 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-[#16803D]"
+                className="w-full h-11 px-3.5 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-[#136968]"
               />
             </div>
 
@@ -72,7 +72,7 @@ export default function SettingsPage() {
             <Button
               type="submit"
               disabled={saving}
-              className="rounded-full bg-[#064B2B] hover:bg-[#043820] text-white text-xs font-semibold h-10 px-6 gap-2"
+              className="rounded-full bg-[#136968] hover:bg-[#0c4a49] text-white text-xs font-semibold h-10 px-6 gap-2 transition-colors"
             >
               <Save className="w-3.5 h-3.5" />
               <span>{saving ? "Saving..." : "Save Profile"}</span>
@@ -84,7 +84,7 @@ export default function SettingsPage() {
       {/* Workspace Settings */}
       <div className="p-6 sm:p-8 rounded-3xl bg-white border border-[#d8e6db] shadow-xs space-y-6">
         <div className="flex items-center gap-3 pb-4 border-b border-gray-100">
-          <div className="w-10 h-10 rounded-2xl bg-emerald-50 text-[#16803D] flex items-center justify-center font-bold">
+          <div className="w-10 h-10 rounded-2xl bg-[#E8F4F4] text-[#136968] flex items-center justify-center font-bold">
             <Shield className="w-5 h-5" />
           </div>
           <div>
@@ -100,7 +100,7 @@ export default function SettingsPage() {
               type="text"
               value={workspaceName}
               onChange={(e) => setWorkspaceName(e.target.value)}
-              className="w-full h-11 px-3.5 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-[#16803D]"
+              className="w-full h-11 px-3.5 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-[#136968]"
             />
           </div>
 

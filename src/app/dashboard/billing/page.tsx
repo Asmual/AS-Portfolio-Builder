@@ -104,13 +104,13 @@ export default function BillingPage() {
       </div>
 
       {/* Current Subscription Card */}
-      <div className="p-6 sm:p-8 rounded-3xl bg-white border border-[#CDECCB] shadow-xs flex flex-col md:flex-row md:items-center justify-between gap-6">
+      <div className="p-6 sm:p-8 rounded-3xl bg-white border border-[#B8DFDF] shadow-xs flex flex-col md:flex-row md:items-center justify-between gap-6">
         <div className="space-y-3">
           <div className="flex items-center gap-2">
-            <span className="px-3 py-1 rounded-full text-[11px] font-bold bg-[#eef7ee] text-[#16803D]">
+            <span className="px-3 py-1 rounded-full text-[11px] font-bold bg-[#E8F4F4] text-[#136968]">
               CURRENT SUBSCRIPTION
             </span>
-            <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-emerald-600 text-white">
+            <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-[#136968] text-white">
               {currentPlan.status}
             </span>
           </div>
@@ -131,7 +131,7 @@ export default function BillingPage() {
               </span>
             </div>
             <div className="h-2 w-full bg-gray-100 rounded-full overflow-hidden">
-              <div className="h-full bg-[#16803D] rounded-full w-2/3" />
+              <div className="h-full bg-[#136968] rounded-full w-2/3" />
             </div>
           </div>
         </div>
@@ -146,7 +146,7 @@ export default function BillingPage() {
           </Button>
           <Button
             onClick={() => handlePlanAction("Agency & Studio", false)}
-            className="rounded-full bg-[#064B2B] hover:bg-[#043820] text-white text-xs font-semibold h-10 px-6"
+            className="rounded-full bg-[#136968] hover:bg-[#0c4a49] text-white text-xs font-semibold h-10 px-6 transition-colors"
           >
             Upgrade Plan
           </Button>
@@ -162,13 +162,13 @@ export default function BillingPage() {
               key={p.id}
               className={`p-6 rounded-3xl bg-white border flex flex-col justify-between transition-all ${
                 p.isCurrent
-                  ? "border-2 border-[#16803D] shadow-lg"
+                  ? "border-2 border-[#136968] shadow-lg"
                   : "border-gray-200 hover:border-gray-300 shadow-xs"
               }`}
             >
               <div>
                 {p.isCurrent && (
-                  <span className="inline-block px-3 py-1 rounded-full text-[10px] font-bold bg-[#16803D] text-white mb-3">
+                  <span className="inline-block px-3 py-1 rounded-full text-[10px] font-bold bg-[#136968] text-white mb-3">
                     YOUR ACTIVE PLAN
                   </span>
                 )}
@@ -183,7 +183,7 @@ export default function BillingPage() {
                 <ul className="space-y-2.5 text-xs text-gray-700 mb-6">
                   {p.features.map((f, fIdx) => (
                     <li key={fIdx} className="flex items-center gap-2">
-                      <Check className="w-3.5 h-3.5 text-[#16803D] shrink-0" />
+                      <Check className="w-3.5 h-3.5 text-[#136968] shrink-0" />
                       <span>{f}</span>
                     </li>
                   ))}
@@ -193,10 +193,10 @@ export default function BillingPage() {
               <Button
                 variant={p.isCurrent ? "outline" : "default"}
                 onClick={() => handlePlanAction(p.name, p.isCurrent)}
-                className={`w-full rounded-full text-xs font-semibold h-10 ${
+                className={`w-full rounded-full text-xs font-semibold h-10 transition-colors ${
                   p.isCurrent
-                    ? "border-[#16803D] text-[#16803D] hover:bg-[#eef7ee]"
-                    : "bg-[#064B2B] hover:bg-[#043820] text-white"
+                    ? "border-[#136968] text-[#136968] hover:bg-[#E8F4F4]"
+                    : "bg-[#136968] hover:bg-[#0c4a49] text-white"
                 }`}
               >
                 {p.isCurrent ? "Current Plan" : "Switch to " + p.name}
@@ -235,7 +235,7 @@ export default function BillingPage() {
                 </span>
                 <button
                   onClick={() => toast.success(`Receipt ${inv.id} downloaded`)}
-                  className="p-2 text-gray-400 hover:text-[#064B2B] hover:bg-[#eef7ee] rounded-xl transition-colors"
+                  className="p-2 text-gray-400 hover:text-[#136968] hover:bg-[#E8F4F4] rounded-xl transition-colors"
                   title="Download Receipt"
                 >
                   <Download className="w-4 h-4" />

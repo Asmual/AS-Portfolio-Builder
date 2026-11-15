@@ -165,13 +165,25 @@ export default function PortfoliosPage() {
           </p>
         </div>
 
-        <Button
-          onClick={() => setCreateDialogOpen(true)}
-          className="rounded-full bg-[#064B2B] hover:bg-[#043820] text-white font-bold text-xs gap-2 h-10 px-5 shadow-sm"
-        >
-          <Plus className="w-4 h-4" />
-          <span>New Portfolio</span>
-        </Button>
+        <div className="flex items-center gap-3">
+          <Link href="/preview/creative-designer">
+            <Button
+              variant="outline"
+              className="rounded-full border-gray-300 hover:border-[#136968] hover:text-[#136968] text-xs font-semibold h-10 px-4 gap-1.5 transition-colors"
+            >
+              <Sparkles className="w-4 h-4 text-[#249492]" />
+              <span>Theme Catalog</span>
+            </Button>
+          </Link>
+
+          <Button
+            onClick={() => setCreateDialogOpen(true)}
+            className="rounded-full bg-[#136968] hover:bg-[#0c4a49] text-white font-bold text-xs gap-2 h-10 px-5 shadow-sm transition-colors"
+          >
+            <Plus className="w-4 h-4" />
+            <span>New Portfolio</span>
+          </Button>
+        </div>
       </div>
 
       {/* Filter and Search Bar */}
@@ -182,7 +194,7 @@ export default function PortfoliosPage() {
             onClick={() => setFilter("all")}
             className={`px-4 py-1.5 rounded-xl text-xs font-semibold transition-all ${
               filter === "all"
-                ? "bg-[#064B2B] text-white"
+                ? "bg-[#136968] text-white"
                 : "text-gray-600 hover:text-[#10291D] hover:bg-gray-100"
             }`}
           >
@@ -192,7 +204,7 @@ export default function PortfoliosPage() {
             onClick={() => setFilter("published")}
             className={`px-4 py-1.5 rounded-xl text-xs font-semibold transition-all ${
               filter === "published"
-                ? "bg-[#064B2B] text-white"
+                ? "bg-[#136968] text-white"
                 : "text-gray-600 hover:text-[#10291D] hover:bg-gray-100"
             }`}
           >
@@ -202,7 +214,7 @@ export default function PortfoliosPage() {
             onClick={() => setFilter("draft")}
             className={`px-4 py-1.5 rounded-xl text-xs font-semibold transition-all ${
               filter === "draft"
-                ? "bg-[#064B2B] text-white"
+                ? "bg-[#136968] text-white"
                 : "text-gray-600 hover:text-[#10291D] hover:bg-gray-100"
             }`}
           >
@@ -218,7 +230,7 @@ export default function PortfoliosPage() {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Search portfolios..."
-            className="w-full sm:w-60 h-9 pl-9 pr-3 rounded-xl border border-gray-200 text-xs bg-gray-50 focus:bg-white focus:outline-none focus:border-[#16803D]"
+            className="w-full sm:w-60 h-9 pl-9 pr-3 rounded-xl border border-gray-200 text-xs bg-gray-50 focus:bg-white focus:outline-none focus:border-[#136968]"
           />
         </div>
       </div>
@@ -259,7 +271,7 @@ export default function PortfoliosPage() {
                   {item.subdomain}.asportfolio.site
                 </p>
                 {item.customDomain && (
-                  <p className="text-xs text-[#16803D] font-mono font-bold flex items-center gap-1">
+                  <p className="text-xs text-[#136968] font-mono font-bold flex items-center gap-1">
                     <Globe className="w-3.5 h-3.5" />
                     <span>{item.customDomain.domainName}</span>
                   </p>
@@ -269,6 +281,17 @@ export default function PortfoliosPage() {
 
             <div className="p-5 pt-0 border-t border-gray-100 space-y-2 mt-2">
               <div className="flex items-center gap-2 pt-3">
+                <Link href={`/p/${item.subdomain}`} target="_blank" className="flex-1">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="w-full rounded-xl text-xs h-9 gap-1 font-semibold hover:border-[#136968] hover:text-[#136968] transition-colors"
+                  >
+                    <ExternalLink className="w-3.5 h-3.5" />
+                    <span>View Live</span>
+                  </Button>
+                </Link>
+
                 <Button
                   variant="outline"
                   size="sm"
@@ -277,7 +300,7 @@ export default function PortfoliosPage() {
                       description: "Visual builder loads customizer canvas.",
                     })
                   }
-                  className="flex-1 rounded-xl text-xs h-9 gap-1 font-semibold"
+                  className="rounded-xl text-xs h-9 gap-1 font-semibold"
                 >
                   <Edit3 className="w-3.5 h-3.5" />
                   <span>Editor</span>
@@ -330,7 +353,7 @@ export default function PortfoliosPage() {
                 value={newTitle}
                 onChange={(e) => setNewTitle(e.target.value)}
                 placeholder="e.g. Alex Rivera - Senior Designer"
-                className="w-full h-11 px-3.5 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-[#16803D]"
+                className="w-full h-11 px-3.5 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-[#136968]"
               />
             </div>
 
@@ -364,7 +387,7 @@ export default function PortfoliosPage() {
                     onClick={() => setSelectedTheme(th.id)}
                     className={`p-3 rounded-xl border text-left text-xs font-semibold transition-all ${
                       selectedTheme === th.id
-                        ? "border-[#16803D] bg-[#eef7ee] text-[#064B2B]"
+                        ? "border-[#136968] bg-[#E8F4F4] text-[#136968]"
                         : "border-gray-200 hover:border-gray-300"
                     }`}
                   >
@@ -386,7 +409,7 @@ export default function PortfoliosPage() {
               <Button
                 type="submit"
                 disabled={isSubmitting}
-                className="rounded-full bg-[#064B2B] hover:bg-[#043820] text-white text-xs font-semibold px-6"
+                className="rounded-full bg-[#136968] hover:bg-[#0c4a49] text-white text-xs font-semibold px-6 transition-colors"
               >
                 {isSubmitting ? "Creating..." : "Create Portfolio"}
               </Button>

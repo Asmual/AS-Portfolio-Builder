@@ -2,7 +2,7 @@
 
 @layer base {
   :root {
-    /* Exact Color Palette specified by user */
+    /* Exact Color Palette based on user's #136968 */
     --background: #F8F8EF;
     --foreground: #10291D;
 
@@ -12,42 +12,42 @@
     --popover: #ffffff;
     --popover-foreground: #10291D;
 
-    /* Deep forest green: #064B2B */
-    --forest-green: #064B2B;
-    --forest-green-hover: #043820;
-
-    /* Primary green: #16803D */
-    --primary: #064B2B;
-    --primary-hover: #043820;
+    /* Primary Color (Base): #136968 */
+    --primary: #136968;
+    --primary-hover: #0c4a49;
     --primary-foreground: #ffffff;
 
-    --brand-primary: #16803D;
-    --brand-primary-hover: #126630;
+    --forest-green: #136968;
+    --forest-green-hover: #0c4a49;
 
-    /* Light green: #CDECCB */
-    --light-green: #CDECCB;
+    /* Secondary Color (Lighter Accent): #249492 */
+    --brand-primary: #249492;
+    --brand-primary-hover: #1b7371;
+
+    /* Light tint for surfaces & badges */
+    --light-green: #E8F4F4;
 
     /* Accent & Brand */
-    --brand-accent: #16803D;
-    --brand-accent-hover: #064B2B;
+    --brand-accent: #136968;
+    --brand-accent-hover: #0c4a49;
 
     /* Secondary surface */
-    --secondary: #eef7ee;
-    --secondary-hover: #e0f0e0;
-    --secondary-foreground: #064B2B;
+    --secondary: #E8F4F4;
+    --secondary-hover: #D6ECEC;
+    --secondary-foreground: #136968;
 
     /* Muted elements */
-    --muted: #edf4ee;
-    --muted-foreground: #506a5a;
+    --muted: #E8F4F4;
+    --muted-foreground: #3B6B6A;
 
     /* Interactive accents */
-    --accent: #eef7ee;
-    --accent-foreground: #064B2B;
+    --accent: #E8F4F4;
+    --accent-foreground: #136968;
 
     /* Borders and Rings */
-    --border: #dbe8df;
-    --input: #dbe8df;
-    --ring: #16803D;
+    --border: #B8DFDF;
+    --input: #B8DFDF;
+    --ring: #136968;
 
     --radius: 0.85rem;
   }
@@ -88,14 +88,13 @@
   --color-input: var(--input);
   --color-ring: var(--ring);
 
-  --radius-lg: var(--radius);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-sm: calc(var(--radius) - 4px);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
 }
 
-html, body {
+body {
   background-color: var(--background);
   color: var(--foreground);
+  font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
   overflow-x: hidden;
-  font-family: var(--font-geist-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }

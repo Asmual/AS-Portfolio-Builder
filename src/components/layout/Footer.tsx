@@ -26,7 +26,7 @@ export function Footer() {
     <footer className="relative w-full mt-12 pt-8 overflow-hidden select-none">
       {/* 
         ========================================================================
-        ORGANIC SCALLOPED / WAVY TOP CURVE (Matching Reference Image)
+        ORGANIC SCALLOPED / WAVY TOP CURVE
         Smooth undulating curves separating the page content from the dark footer
         ========================================================================
       */}
@@ -37,22 +37,22 @@ export function Footer() {
           className="w-full h-14 sm:h-20 object-fill block"
           preserveAspectRatio="none"
         >
-          {/* Layer 1: Ambient soft green wave contour */}
+          {/* Layer 1: Ambient soft secondary teal wave contour */}
           <path
             d="M0 45 C 180 10, 360 80, 540 30 C 720 -15, 900 70, 1080 25 C 1260 -15, 1380 50, 1440 30 L 1440 90 L 0 90 Z"
-            fill="#16803D"
-            fillOpacity="0.4"
+            fill="#249492"
+            fillOpacity="0.3"
           />
-          {/* Layer 2: Main deep forest green (#064B2B) organic wave matching user's reference */}
+          {/* Layer 2: Main deep teal (#136968) organic wave */}
           <path
             d="M0 55 C 160 20, 320 85, 480 35 C 640 -10, 800 75, 960 28 C 1120 -10, 1280 65, 1440 40 L 1440 90 L 0 90 Z"
-            fill="#064B2B"
+            fill="#136968"
           />
         </svg>
       </div>
 
-      {/* Main Footer Body with Deep Forest Green Theme (#064B2B) */}
-      <div className="bg-[#064B2B] text-[#F8F8EF] px-4 sm:px-6 lg:px-8 pb-12 pt-4">
+      {/* Main Footer Body with Deep Teal Theme (#136968) */}
+      <div className="bg-[#136968] text-[#F8F8EF] px-4 sm:px-6 lg:px-8 pb-12 pt-4">
         <div className="max-w-7xl mx-auto">
           
           <div className="grid grid-cols-1 md:grid-cols-12 gap-10 lg:gap-14 pb-12 border-b border-white/10">
@@ -60,7 +60,7 @@ export function Footer() {
             {/* Column 1: Brand Info & Tagline */}
             <div className="md:col-span-4 space-y-4">
               <div className="flex items-center gap-3">
-                <div className="relative flex items-center justify-center w-11 h-11 rounded-2xl bg-white/10 border border-[#CDECCB]/30 text-white shadow-sm">
+                <div className="relative flex items-center justify-center w-11 h-11 rounded-2xl bg-white/10 border border-[#B8DFDF]/30 text-white shadow-sm">
                   <svg
                     viewBox="0 0 24 24"
                     fill="none"
@@ -68,10 +68,10 @@ export function Footer() {
                     strokeWidth="2"
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    className="w-6 h-6 text-[#CDECCB]"
+                    className="w-6 h-6 text-[#E8F4F4]"
                   >
                     <path d="M3 10.5L12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v6H4a1 1 0 0 1-1-1v-9.5z" />
-                    <path d="M12 9c0 3 2 4 4 4" strokeWidth="2.2" className="text-emerald-400" />
+                    <path d="M12 9c0 3 2 4 4 4" strokeWidth="2.2" className="text-teal-200" />
                     <path d="M12 9c-2 1-3 3-3 5" strokeWidth="2" />
                   </svg>
                 </div>
@@ -79,7 +79,7 @@ export function Footer() {
                   <span className="text-xl font-extrabold tracking-tight text-white block">
                     AS Portfolio Builder
                   </span>
-                  <p className="text-xs text-[#CDECCB]/80 font-medium">
+                  <p className="text-xs text-[#E8F4F4]/80 font-medium">
                     Creative Solutions for a Better Tomorrow
                   </p>
                 </div>
@@ -90,9 +90,9 @@ export function Footer() {
               </p>
             </div>
 
-            {/* Column 2: Quick Links with Dedicated Green Right-Arrow */}
+            {/* Column 2: Quick Links with Dedicated Secondary Right-Arrow */}
             <div className="md:col-span-2 space-y-4">
-              <h4 className="text-sm font-bold uppercase tracking-wider text-[#CDECCB]">
+              <h4 className="text-sm font-bold uppercase tracking-wider text-[#E8F4F4]">
                 Quick Links
               </h4>
               <ul className="space-y-2.5 text-sm">
@@ -101,7 +101,7 @@ export function Footer() {
                     href="#themes"
                     className="group flex items-center gap-2 text-white/80 hover:text-white transition-all"
                   >
-                    <ChevronRight className="w-3.5 h-3.5 text-[#16803D] group-hover:text-[#CDECCB] group-hover:translate-x-1 transition-all shrink-0 stroke-[2.5]" />
+                    <ChevronRight className="w-3.5 h-3.5 text-[#249492] group-hover:text-white group-hover:translate-x-1 transition-all shrink-0 stroke-[2.5]" />
                     <span>Themes</span>
                   </Link>
                 </li>
@@ -110,7 +110,7 @@ export function Footer() {
                     href="#pricing"
                     className="group flex items-center gap-2 text-white/80 hover:text-white transition-all"
                   >
-                    <ChevronRight className="w-3.5 h-3.5 text-[#16803D] group-hover:text-[#CDECCB] group-hover:translate-x-1 transition-all shrink-0 stroke-[2.5]" />
+                    <ChevronRight className="w-3.5 h-3.5 text-[#249492] group-hover:text-white group-hover:translate-x-1 transition-all shrink-0 stroke-[2.5]" />
                     <span>Pricing</span>
                   </Link>
                 </li>
@@ -119,7 +119,7 @@ export function Footer() {
                     href="#docs"
                     className="group flex items-center gap-2 text-white/80 hover:text-white transition-all"
                   >
-                    <ChevronRight className="w-3.5 h-3.5 text-[#16803D] group-hover:text-[#CDECCB] group-hover:translate-x-1 transition-all shrink-0 stroke-[2.5]" />
+                    <ChevronRight className="w-3.5 h-3.5 text-[#249492] group-hover:text-white group-hover:translate-x-1 transition-all shrink-0 stroke-[2.5]" />
                     <span>Docs</span>
                   </Link>
                 </li>
@@ -128,16 +128,16 @@ export function Footer() {
                     href="#blog"
                     className="group flex items-center gap-2 text-white/80 hover:text-white transition-all"
                   >
-                    <ChevronRight className="w-3.5 h-3.5 text-[#16803D] group-hover:text-[#CDECCB] group-hover:translate-x-1 transition-all shrink-0 stroke-[2.5]" />
+                    <ChevronRight className="w-3.5 h-3.5 text-[#249492] group-hover:text-white group-hover:translate-x-1 transition-all shrink-0 stroke-[2.5]" />
                     <span>Blog</span>
                   </Link>
                 </li>
               </ul>
             </div>
 
-            {/* Column 3: Resources with Dedicated Green Right-Arrow */}
+            {/* Column 3: Resources with Dedicated Secondary Right-Arrow */}
             <div className="md:col-span-2 space-y-4">
-              <h4 className="text-sm font-bold uppercase tracking-wider text-[#CDECCB]">
+              <h4 className="text-sm font-bold uppercase tracking-wider text-[#E8F4F4]">
                 Resources
               </h4>
               <ul className="space-y-2.5 text-sm">
@@ -146,7 +146,7 @@ export function Footer() {
                     href="#help"
                     className="group flex items-center gap-2 text-white/80 hover:text-white transition-all"
                   >
-                    <ChevronRight className="w-3.5 h-3.5 text-[#16803D] group-hover:text-[#CDECCB] group-hover:translate-x-1 transition-all shrink-0 stroke-[2.5]" />
+                    <ChevronRight className="w-3.5 h-3.5 text-[#249492] group-hover:text-white group-hover:translate-x-1 transition-all shrink-0 stroke-[2.5]" />
                     <span>Help Center</span>
                   </Link>
                 </li>
@@ -155,7 +155,7 @@ export function Footer() {
                     href="#privacy"
                     className="group flex items-center gap-2 text-white/80 hover:text-white transition-all"
                   >
-                    <ChevronRight className="w-3.5 h-3.5 text-[#16803D] group-hover:text-[#CDECCB] group-hover:translate-x-1 transition-all shrink-0 stroke-[2.5]" />
+                    <ChevronRight className="w-3.5 h-3.5 text-[#249492] group-hover:text-white group-hover:translate-x-1 transition-all shrink-0 stroke-[2.5]" />
                     <span>Privacy Policy</span>
                   </Link>
                 </li>
@@ -164,7 +164,7 @@ export function Footer() {
                     href="#terms"
                     className="group flex items-center gap-2 text-white/80 hover:text-white transition-all"
                   >
-                    <ChevronRight className="w-3.5 h-3.5 text-[#16803D] group-hover:text-[#CDECCB] group-hover:translate-x-1 transition-all shrink-0 stroke-[2.5]" />
+                    <ChevronRight className="w-3.5 h-3.5 text-[#249492] group-hover:text-white group-hover:translate-x-1 transition-all shrink-0 stroke-[2.5]" />
                     <span>Terms of Service</span>
                   </Link>
                 </li>
@@ -173,7 +173,7 @@ export function Footer() {
                     href="#contact"
                     className="group flex items-center gap-2 text-white/80 hover:text-white transition-all"
                   >
-                    <ChevronRight className="w-3.5 h-3.5 text-[#16803D] group-hover:text-[#CDECCB] group-hover:translate-x-1 transition-all shrink-0 stroke-[2.5]" />
+                    <ChevronRight className="w-3.5 h-3.5 text-[#249492] group-hover:text-white group-hover:translate-x-1 transition-all shrink-0 stroke-[2.5]" />
                     <span>Contact</span>
                   </Link>
                 </li>
@@ -183,11 +183,11 @@ export function Footer() {
             {/* Column 4: Stay Updated & Circular Socials matching reference */}
             <div className="md:col-span-4 space-y-4">
               <div className="flex items-center justify-between gap-4">
-                <h4 className="text-sm font-bold uppercase tracking-wider text-[#CDECCB]">
+                <h4 className="text-sm font-bold uppercase tracking-wider text-[#E8F4F4]">
                   Stay Updated
                 </h4>
 
-                {/* Circular Social Icons matching reference image */}
+                {/* Circular Social Icons */}
                 <div className="flex items-center gap-2">
                   <Link
                     href="https://github.com"
@@ -245,13 +245,13 @@ export function Footer() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="Enter your email"
-                  className="w-full h-11 pl-4 pr-12 text-sm rounded-full border border-white/20 bg-white/10 text-white focus:outline-none focus:ring-2 focus:ring-[#CDECCB] focus:border-transparent transition-all placeholder:text-white/50"
+                  className="w-full h-11 pl-4 pr-12 text-sm rounded-full border border-white/20 bg-white/10 text-white focus:outline-none focus:ring-2 focus:ring-[#249492] focus:border-transparent transition-all placeholder:text-white/50"
                 />
                 <Button
                   type="submit"
                   size="icon"
                   variant="default"
-                  className="absolute right-1 w-9 h-9 rounded-full bg-[#16803D] hover:bg-[#126630] text-white flex items-center justify-center cursor-pointer shadow-sm"
+                  className="absolute right-1 w-9 h-9 rounded-full bg-[#249492] hover:bg-[#1b7371] text-white flex items-center justify-center cursor-pointer shadow-sm transition-colors"
                   aria-label="Subscribe to newsletter"
                 >
                   <Send className="w-4 h-4 -ml-0.5" />
@@ -263,8 +263,8 @@ export function Footer() {
 
           {/* Bottom Bar */}
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-6 text-xs text-white/60 font-medium">
-            <p>© 2025 AS Portfolio Builder. All rights reserved.</p>
-            <div className="flex items-center gap-1.5 text-[#CDECCB] font-semibold">
+            <p>© 2026 AS Portfolio Builder. All rights reserved.</p>
+            <div className="flex items-center gap-1.5 text-[#E8F4F4] font-semibold">
               <Lock className="w-3.5 h-3.5" />
               <span>Secure & Trusted Platform</span>
             </div>

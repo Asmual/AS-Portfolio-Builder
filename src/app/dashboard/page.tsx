@@ -66,8 +66,8 @@ export default function DashboardOverviewPage() {
       value: portfolios.length > 0 ? `${portfolios.length} / 3` : "2 / 3",
       subtext: "Pro Plan limit: 3 sites",
       icon: FolderGit2,
-      color: "text-[#16803D]",
-      bg: "bg-[#eef7ee]",
+      color: "text-[#136968]",
+      bg: "bg-[#E8F4F4]",
     },
     {
       title: "Custom Domains",
@@ -99,18 +99,18 @@ export default function DashboardOverviewPage() {
     <div className="space-y-8">
       {/* 
         ========================================================================
-        1. WELCOME HERO BANNER
+        1. WELCOME HERO BANNER (Solid flat #136968, zero gradients)
         ========================================================================
       */}
-      <div className="relative rounded-3xl p-6 sm:p-8 bg-gradient-to-r from-[#064B2B] via-[#0d5c36] to-[#16803D] text-white shadow-xl overflow-hidden">
+      <div className="relative rounded-3xl p-6 sm:p-8 bg-[#136968] text-white shadow-xl overflow-hidden border border-[#B8DFDF]/30">
         {/* Subtle decorative circles */}
-        <div className="absolute -right-10 -bottom-10 w-60 h-60 bg-white/10 rounded-full blur-2xl pointer-events-none" />
-        <div className="absolute left-1/2 -top-10 w-48 h-48 bg-[#86EFAC]/15 rounded-full blur-2xl pointer-events-none" />
+        <div className="absolute -right-10 -bottom-10 w-60 h-60 bg-[#249492]/25 rounded-full pointer-events-none" />
+        <div className="absolute left-1/2 -top-10 w-48 h-48 bg-[#0c4a49]/40 rounded-full pointer-events-none" />
 
         <div className="relative z-10 flex flex-col sm:flex-row sm:items-center justify-between gap-6">
           <div className="space-y-2 max-w-xl">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-bold tracking-wider uppercase bg-white/15 text-[#CDECCB] border border-white/20">
-              <Sparkles className="w-3 h-3 text-[#CDECCB]" />
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-bold tracking-wider uppercase bg-white/15 text-[#B8DFDF] border border-white/20">
+              <Sparkles className="w-3 h-3 text-[#B8DFDF]" />
               <span>Multi-Tenant Workspace</span>
             </span>
             <h1 className="text-2xl sm:text-3xl font-black tracking-tight text-white">
@@ -125,9 +125,9 @@ export default function DashboardOverviewPage() {
             <Link href="/dashboard/portfolios">
               <Button
                 variant="default"
-                className="w-full sm:w-auto rounded-full bg-white text-[#064B2B] hover:bg-gray-100 font-bold text-xs shadow-md h-11 px-6 gap-2"
+                className="w-full sm:w-auto rounded-full bg-white text-[#136968] hover:bg-[#E8F4F4] font-bold text-xs shadow-md h-11 px-6 gap-2 transition-colors"
               >
-                <Plus className="w-4 h-4 text-[#064B2B]" />
+                <Plus className="w-4 h-4 text-[#136968]" />
                 <span>Create New Portfolio</span>
               </Button>
             </Link>
@@ -146,7 +146,7 @@ export default function DashboardOverviewPage() {
           return (
             <div
               key={idx}
-              className="p-5 rounded-2xl bg-white border border-[#d8e6db] shadow-xs flex items-center justify-between transition-all hover:shadow-md hover:border-[#16803D]/40"
+              className="p-5 rounded-2xl bg-white border border-[#d8e6db] shadow-xs flex items-center justify-between transition-all hover:shadow-md hover:border-[#136968]/40"
             >
               <div>
                 <p className="text-xs text-gray-500 font-medium">{stat.title}</p>
@@ -180,7 +180,7 @@ export default function DashboardOverviewPage() {
           </div>
           <Link
             href="/dashboard/portfolios"
-            className="text-xs font-bold text-[#16803D] hover:underline flex items-center gap-1"
+            className="text-xs font-bold text-[#136968] hover:text-[#249492] hover:underline flex items-center gap-1"
           >
             <span>View All</span>
             <ArrowRight className="w-3.5 h-3.5" />
@@ -215,7 +215,7 @@ export default function DashboardOverviewPage() {
                     {/* Status Pill */}
                     <div className="absolute top-3 left-3 flex items-center gap-2">
                       {item.isPublished ? (
-                        <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-[10px] font-bold bg-emerald-600 text-white shadow-md">
+                        <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-[10px] font-bold bg-[#136968] text-white shadow-md">
                           <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
                           <span>PUBLISHED</span>
                         </span>
@@ -235,7 +235,7 @@ export default function DashboardOverviewPage() {
 
                   {/* Body Content */}
                   <div className="p-5 space-y-3">
-                    <h3 className="text-base font-bold text-[#10291D] truncate group-hover:text-[#16803D] transition-colors">
+                    <h3 className="text-base font-bold text-[#10291D] truncate group-hover:text-[#136968] transition-colors">
                       {item.title}
                     </h3>
 
@@ -251,10 +251,10 @@ export default function DashboardOverviewPage() {
 
                       {/* Custom Domain (if present) */}
                       {item.customDomain && (
-                        <div className="flex items-center gap-2 text-[#16803D] font-mono text-[11px]">
-                          <ShieldCheck className="w-3.5 h-3.5 text-[#16803D]" />
+                        <div className="flex items-center gap-2 text-[#136968] font-mono text-[11px]">
+                          <ShieldCheck className="w-3.5 h-3.5 text-[#136968]" />
                           <span className="font-bold">{item.customDomain.domainName}</span>
-                          <span className="text-[9px] px-1.5 py-0.2 rounded bg-emerald-100 text-emerald-800 font-sans font-bold">
+                          <span className="text-[9px] px-1.5 py-0.2 rounded bg-[#E8F4F4] text-[#136968] font-sans font-bold">
                             SSL Active
                           </span>
                         </div>
@@ -273,7 +273,7 @@ export default function DashboardOverviewPage() {
                         description: "Visual customizer loads instant live theme preview.",
                       });
                     }}
-                    className="flex-1 rounded-xl text-xs font-semibold border-[#d8e6db] hover:border-[#16803D] hover:text-[#16803D] h-9 gap-1.5"
+                    className="flex-1 rounded-xl text-xs font-semibold border-[#d8e6db] hover:border-[#136968] hover:text-[#136968] h-9 gap-1.5"
                   >
                     <Edit3 className="w-3.5 h-3.5" />
                     <span>Edit Portfolio</span>
@@ -281,10 +281,10 @@ export default function DashboardOverviewPage() {
 
                   {item.isPublished && (
                     <a
-                      href={`http://localhost:3000/#themes`}
+                      href={`http://localhost:3001/#themes`}
                       target="_blank"
                       rel="noreferrer"
-                      className="p-2 rounded-xl border border-[#d8e6db] hover:border-[#16803D] text-gray-500 hover:text-[#064B2B] hover:bg-[#eef7ee] transition-colors"
+                      className="p-2 rounded-xl border border-[#d8e6db] hover:border-[#136968] text-gray-500 hover:text-[#136968] hover:bg-[#E8F4F4] transition-colors"
                       title="View Live Website"
                     >
                       <ExternalLink className="w-4 h-4" />
@@ -297,9 +297,9 @@ export default function DashboardOverviewPage() {
             {/* Create New Card */}
             <Link
               href="/dashboard/portfolios"
-              className="rounded-3xl border-2 border-dashed border-[#CDECCB] hover:border-[#16803D] bg-white/60 hover:bg-white p-8 flex flex-col items-center justify-center text-center gap-4 transition-all duration-300 min-h-[300px] group shadow-xs hover:shadow-md"
+              className="rounded-3xl border-2 border-dashed border-[#B8DFDF] hover:border-[#136968] bg-white/60 hover:bg-white p-8 flex flex-col items-center justify-center text-center gap-4 transition-all duration-300 min-h-[300px] group shadow-xs hover:shadow-md"
             >
-              <div className="w-14 h-14 rounded-full bg-[#eef7ee] text-[#16803D] flex items-center justify-center group-hover:scale-110 transition-transform">
+              <div className="w-14 h-14 rounded-full bg-[#E8F4F4] text-[#136968] flex items-center justify-center group-hover:scale-110 transition-transform">
                 <Plus className="w-7 h-7" />
               </div>
               <div className="space-y-1">

@@ -88,21 +88,31 @@ export default function RegisterPage() {
 
   const handleGoogleSignUp = async () => {
     try {
-      await signIn.social({
+      setIsLoading(true);
+      const callbackURL = typeof window !== "undefined" ? `${window.location.origin}/dashboard` : "/dashboard";
+      const res = await signIn.social({
         provider: "google",
-        callbackURL: "/dashboard",
+        callbackURL,
       });
-    } catch {
-      toast.error("Failed to initialize Google Sign-In");
+
+      if (res?.error) {
+        toast.error(res.error.message || "Google sign-up failed");
+      } else if (res?.data?.url) {
+        window.location.href = res.data.url;
+      }
+    } catch (err: any) {
+      toast.error(err?.message || "Failed to initialize Google Sign-In");
+    } finally {
+      setIsLoading(false);
     }
   };
 
   return (
-    <div className="min-h-screen w-full flex flex-col justify-center items-center p-4 sm:p-6 lg:p-8 bg-gradient-to-br from-[#064B2B] via-[#0d5c36] to-[#10291D] relative overflow-hidden">
+    <div className="min-h-screen w-full flex flex-col justify-center items-center p-4 sm:p-6 lg:p-8 bg-[#10291D] relative overflow-hidden">
       
-      {/* Ambient background glow & texture */}
-      <div className="absolute top-1/4 -left-20 w-96 h-96 bg-[#16803D]/25 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-1/4 -right-20 w-96 h-96 bg-[#86EFAC]/15 rounded-full blur-3xl pointer-events-none" />
+      {/* Ambient background accents */}
+      <div className="absolute top-1/4 -left-20 w-96 h-96 bg-[#136968]/20 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-1/4 -right-20 w-96 h-96 bg-[#249492]/15 rounded-full blur-3xl pointer-events-none" />
 
       {/* Top back navigation */}
       <div className="w-full max-w-5xl flex items-center justify-between mb-4 z-20">
@@ -117,43 +127,23 @@ export default function RegisterPage() {
 
       {/* 
         ========================================================================
-        MAIN CARD CONTAINER (Inspired directly by user reference mockup)
+        MAIN CARD CONTAINER (Solid styling, zero gradient per user instructions)
         ========================================================================
       */}
-      <div className="w-full max-w-5xl rounded-[32px] sm:rounded-[36px] bg-white shadow-2xl overflow-hidden grid grid-cols-1 lg:grid-cols-12 min-h-[640px] z-10 border border-white/20">
+      <div className="w-full max-w-5xl rounded-[32px] sm:rounded-[36px] bg-white shadow-2xl overflow-hidden grid grid-cols-1 lg:grid-cols-12 min-h-[640px] z-10 border border-[#B8DFDF]/40">
         
-        {/* LEFT SIDE: Welcome Hero with Organic 3D Spheres & Headline */}
-        <div className="lg:col-span-6 relative bg-gradient-to-br from-[#064B2B] via-[#08522f] to-[#16803D] p-8 sm:p-12 lg:p-14 flex flex-col justify-between overflow-hidden text-white select-none">
+        {/* LEFT SIDE: Welcome Hero (Solid #136968 with #249492 accents) */}
+        <div className="lg:col-span-6 relative bg-[#136968] p-8 sm:p-12 lg:p-14 flex flex-col justify-between overflow-hidden text-white select-none">
           
-          {/* Layered 3D Spheres */}
-          <div
-            className="absolute -top-16 -left-16 w-80 h-80 rounded-full opacity-90 pointer-events-none"
-            style={{
-              background: "radial-gradient(circle at 35% 35%, #22c55e 0%, #16803D 50%, #064B2B 90%)",
-              boxShadow: "inset -10px -10px 30px rgba(0,0,0,0.5), 10px 20px 40px rgba(0,0,0,0.4)",
-            }}
-          />
-
-          <div
-            className="absolute bottom-8 right-6 w-52 h-52 rounded-full opacity-95 pointer-events-none"
-            style={{
-              background: "radial-gradient(circle at 35% 30%, #4ade80 0%, #16803D 45%, #053b21 90%)",
-              boxShadow: "inset -8px -8px 25px rgba(0,0,0,0.6), 12px 18px 35px rgba(0,0,0,0.45)",
-            }}
-          />
-
-          <div
-            className="absolute -bottom-12 -left-12 w-48 h-48 rounded-full opacity-85 pointer-events-none"
-            style={{
-              background: "radial-gradient(circle at 40% 35%, #86efac 0%, #15803d 50%, #032b17 95%)",
-              boxShadow: "inset -6px -6px 20px rgba(0,0,0,0.6), 8px 12px 25px rgba(0,0,0,0.4)",
-            }}
-          />
+          {/* Flat Geometric Decorative Circles */}
+          <div className="absolute -top-16 -left-16 w-80 h-80 rounded-full bg-[#249492]/25 pointer-events-none" />
+          <div className="absolute bottom-8 right-6 w-52 h-52 rounded-full bg-[#0c4a49]/40 pointer-events-none" />
+          <div className="absolute -bottom-12 -left-12 w-48 h-48 rounded-full bg-[#249492]/15 pointer-events-none" />
 
           {/* Top Brand Pill */}
           <div className="relative z-10 flex items-center gap-2">
             <div className="w-8 h-8 rounded-xl bg-white/15 backdrop-blur-md flex items-center justify-center border border-white/25">
-              <span className="font-black text-sm text-[#CDECCB]">AS</span>
+              <span className="font-black text-sm text-[#B8DFDF]">AS</span>
             </div>
             <span className="text-xs font-semibold tracking-wide text-white/90">
               AS Portfolio Builder
@@ -162,13 +152,13 @@ export default function RegisterPage() {
 
           {/* Center Welcome Typography */}
           <div className="relative z-10 my-auto py-10 max-w-sm">
-            <h2 className="text-3xl sm:text-4xl lg:text-[44px] font-black tracking-tight leading-tight text-white uppercase drop-shadow-sm">
+            <h2 className="text-3xl sm:text-4xl lg:text-[44px] font-black tracking-tight leading-tight text-white uppercase">
               JOIN US
             </h2>
-            <p className="text-sm sm:text-base font-bold text-[#CDECCB] uppercase tracking-wider mt-1 drop-shadow-sm">
+            <p className="text-sm sm:text-base font-bold text-[#B8DFDF] uppercase tracking-wider mt-1">
               START YOUR JOURNEY
             </p>
-            <p className="text-xs sm:text-sm text-white/80 mt-4 leading-relaxed font-normal">
+            <p className="text-xs sm:text-sm text-white/85 mt-4 leading-relaxed font-normal">
               Build your customized portfolio in minutes. Connect custom domains, showcase projects, and land high-paying clients.
             </p>
           </div>
@@ -183,14 +173,6 @@ export default function RegisterPage() {
 
         {/* RIGHT SIDE: Auth Registration Form */}
         <div className="lg:col-span-6 relative p-8 sm:p-12 lg:p-14 flex flex-col justify-between bg-white">
-          
-          <div
-            className="absolute -bottom-14 -right-14 w-36 h-36 rounded-full opacity-35 pointer-events-none"
-            style={{
-              background: "radial-gradient(circle at 35% 35%, #22c55e 0%, #16803D 60%, #064B2B 95%)",
-            }}
-          />
-
           <div className="max-w-md w-full mx-auto my-auto relative z-10">
             <div className="space-y-1 mb-6">
               <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-[#10291D]">
@@ -214,7 +196,7 @@ export default function RegisterPage() {
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     placeholder="Full Name"
-                    className="w-full h-11 pl-11 pr-4 rounded-xl border border-gray-200 bg-[#F8F9FA] text-sm text-[#10291D] placeholder:text-gray-400 focus:outline-none focus:bg-white focus:border-[#16803D] focus:ring-2 focus:ring-[#16803D]/20 transition-all"
+                    className="w-full h-11 pl-11 pr-4 rounded-xl border border-gray-200 bg-[#F8F9FA] text-sm text-[#10291D] placeholder:text-gray-400 focus:outline-none focus:bg-white focus:border-[#136968] focus:ring-2 focus:ring-[#136968]/20 transition-all"
                   />
                 </div>
                 {errors.name && <p className="text-[11px] text-red-500 pl-1">{errors.name}</p>}
@@ -232,7 +214,7 @@ export default function RegisterPage() {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="Valid Email (e.g. name@gmail.com)"
-                    className="w-full h-11 pl-11 pr-4 rounded-xl border border-gray-200 bg-[#F8F9FA] text-sm text-[#10291D] placeholder:text-gray-400 focus:outline-none focus:bg-white focus:border-[#16803D] focus:ring-2 focus:ring-[#16803D]/20 transition-all"
+                    className="w-full h-11 pl-11 pr-4 rounded-xl border border-gray-200 bg-[#F8F9FA] text-sm text-[#10291D] placeholder:text-gray-400 focus:outline-none focus:bg-white focus:border-[#136968] focus:ring-2 focus:ring-[#136968]/20 transition-all"
                   />
                 </div>
                 {errors.email && <p className="text-[11px] text-red-500 pl-1">{errors.email}</p>}
@@ -250,12 +232,12 @@ export default function RegisterPage() {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder="Create a strong password"
-                    className="w-full h-11 pl-11 pr-20 rounded-xl border border-gray-200 bg-[#F8F9FA] text-sm text-[#10291D] placeholder:text-gray-400 focus:outline-none focus:bg-white focus:border-[#16803D] focus:ring-2 focus:ring-[#16803D]/20 transition-all"
+                    className="w-full h-11 pl-11 pr-20 rounded-xl border border-gray-200 bg-[#F8F9FA] text-sm text-[#10291D] placeholder:text-gray-400 focus:outline-none focus:bg-white focus:border-[#136968] focus:ring-2 focus:ring-[#136968]/20 transition-all"
                   />
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-4 text-xs font-bold text-gray-400 hover:text-[#064B2B] tracking-wider uppercase transition-colors"
+                    className="absolute right-4 text-xs font-bold text-gray-400 hover:text-[#136968] tracking-wider uppercase transition-colors"
                   >
                     {showPassword ? "HIDE" : "SHOW"}
                   </button>
@@ -306,15 +288,15 @@ export default function RegisterPage() {
                     type="checkbox"
                     checked={agreeTerms}
                     onChange={(e) => setAgreeTerms(e.target.checked)}
-                    className="w-4 h-4 rounded border-gray-300 text-[#064B2B] focus:ring-[#16803D] accent-[#064B2B] mt-0.5"
+                    className="w-4 h-4 rounded border-gray-300 text-[#136968] focus:ring-[#136968] accent-[#136968] mt-0.5"
                   />
                   <span>
                     I agree to the{" "}
-                    <Link href="/terms" className="text-[#16803D] font-medium hover:underline">
+                    <Link href="/terms" className="text-[#136968] font-medium hover:text-[#249492] hover:underline">
                       Terms of Service
                     </Link>{" "}
                     and{" "}
-                    <Link href="/privacy" className="text-[#16803D] font-medium hover:underline">
+                    <Link href="/privacy" className="text-[#136968] font-medium hover:text-[#249492] hover:underline">
                       Privacy Policy
                     </Link>
                   </span>
@@ -326,7 +308,7 @@ export default function RegisterPage() {
               <Button
                 type="submit"
                 disabled={isLoading}
-                className="w-full h-11 rounded-xl text-sm font-bold bg-[#064B2B] hover:bg-[#043820] text-white shadow-md hover:shadow-lg transition-all mt-2 cursor-pointer"
+                className="w-full h-11 rounded-xl text-sm font-bold bg-[#136968] hover:bg-[#0c4a49] text-white shadow-md hover:shadow-lg transition-all mt-2 cursor-pointer"
               >
                 {isLoading ? "Creating account..." : "Sign up"}
               </Button>
@@ -368,7 +350,7 @@ export default function RegisterPage() {
 
             <div className="mt-5 text-center text-xs text-[#10291D]/70">
               Already have an account?{" "}
-              <Link href="/login" className="font-bold text-[#16803D] hover:underline">
+              <Link href="/login" className="font-bold text-[#136968] hover:text-[#249492] hover:underline">
                 Sign in
               </Link>
             </div>

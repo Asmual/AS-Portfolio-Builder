@@ -139,14 +139,9 @@ export default function LoginPage() {
           <div className="absolute bottom-8 right-6 w-52 h-52 rounded-full bg-[#0c4a49]/40 pointer-events-none" />
           <div className="absolute -bottom-12 -left-12 w-48 h-48 rounded-full bg-[#249492]/15 pointer-events-none" />
 
-          {/* Top Brand Pill */}
-          <div className="relative z-10 flex items-center gap-2">
-            <div className="w-8 h-8 rounded-xl bg-white/15 backdrop-blur-md flex items-center justify-center border border-white/25">
-              <span className="font-black text-sm text-[#B8DFDF]">AS</span>
-            </div>
-            <span className="text-xs font-semibold tracking-wide text-white/90">
-              AS Portfolio Builder
-            </span>
+          {/* Top Brand Pill with Authentic AS Triangle Logo */}
+          <div className="relative z-10">
+            <BrandLogo inverted size="sm" />
           </div>
 
           {/* Center Welcome Typography */}

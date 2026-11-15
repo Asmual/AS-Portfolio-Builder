@@ -59,31 +59,7 @@ export function Footer() {
             
             {/* Column 1: Brand Info & Tagline */}
             <div className="md:col-span-4 space-y-4">
-              <div className="flex items-center gap-3">
-                <div className="relative flex items-center justify-center w-11 h-11 rounded-2xl bg-white/10 border border-[#B8DFDF]/30 text-white shadow-sm">
-                  <svg
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    className="w-6 h-6 text-[#E8F4F4]"
-                  >
-                    <path d="M3 10.5L12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v6H4a1 1 0 0 1-1-1v-9.5z" />
-                    <path d="M12 9c0 3 2 4 4 4" strokeWidth="2.2" className="text-teal-200" />
-                    <path d="M12 9c-2 1-3 3-3 5" strokeWidth="2" />
-                  </svg>
-                </div>
-                <div>
-                  <span className="text-xl font-extrabold tracking-tight text-white block">
-                    AS Portfolio Builder
-                  </span>
-                  <p className="text-xs text-[#E8F4F4]/80 font-medium">
-                    Creative Solutions for a Better Tomorrow
-                  </p>
-                </div>
-              </div>
+              <BrandLogo inverted size="lg" />
 
               <p className="text-sm text-white/70 font-normal leading-relaxed pt-2 max-w-sm">
                 Create, customize, and publish your professional portfolio website in minutes with custom domain & subdomain support.

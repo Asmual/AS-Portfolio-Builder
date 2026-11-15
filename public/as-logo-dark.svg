@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 626 626" width="626" height="626">
+  <!-- Dark Slate Teal Background -->
+  <rect width="100%" height="100%" fill="#10291D" />
+  
+  <g id="as-triangle-monogram">
+    <!-- Letter A: Crisp White / Cream (#FFFFFF) -->
+    <polygon
+      points="164,404 198,345 268,345 284,372 214,372 195,404"
+      fill="#FFFFFF"
+    />
+    <polygon
+      points="257,245 352,404 320,404 259,301 237,333 205,333"
+      fill="#FFFFFF"
+    />
+    
+    <!-- Letter S: Vibrant Accent Teal (#249492) -->
+    <polygon
+      points="313,156 382,270 351,270 314,210 299,233 332,287 392,287 461,404 369,404 326,330 358,330 385,376 413,376 376,313 316,313 268,233"
+      fill="#249492"
+    />
+  </g>
+
+  <!-- Typography -->
+  <g id="brand-typography">
+    <text
+      x="313"
+      y="446"
+      text-anchor="middle"
+      font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif"
+      font-weight="800"
+      font-size="22"
+      letter-spacing="5"
+      fill="#FFFFFF"
+    >PORTFOLIO BUILDER</text>
+    
+    <text
+      x="313"
+      y="470"
+      text-anchor="middle"
+      font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif"
+      font-weight="600"
+      font-size="10"
+      letter-spacing="4"
+      fill="#249492"
+    >ONE-CLICK PORTFOLIO SAAS</text>
+  </g>
+</svg>

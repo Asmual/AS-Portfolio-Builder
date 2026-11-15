@@ -21,7 +21,7 @@ import {
   X,
   User,
 } from "lucide-react";
-import { BrandLogo } from "@/components/common/BrandLogo";
+import { BrandLogo, ASTriangleIcon } from "@/components/common/BrandLogo";
 import { Button } from "@/components/ui/button";
 import { signOut, useSession } from "@/lib/authClient";
 import { toast } from "@/components/ui/sonner";
@@ -101,8 +101,8 @@ export default function DashboardLayout({
           {/* Current Workspace Pill */}
           <div className="p-3 rounded-2xl bg-[#F8F8EF] border border-[#B8DFDF] flex items-center justify-between">
             <div className="flex items-center gap-2.5">
-              <div className="w-8 h-8 rounded-xl bg-[#136968] text-white flex items-center justify-center font-bold text-xs shadow-xs">
-                AS
+              <div className="w-8 h-8 rounded-xl bg-[#136968] p-1.5 flex items-center justify-center shadow-xs">
+                <ASTriangleIcon colorA="#FFFFFF" colorS="#249492" className="w-full h-full" />
               </div>
               <div>
                 <p className="text-xs font-bold text-[#10291D] truncate max-w-[130px]">

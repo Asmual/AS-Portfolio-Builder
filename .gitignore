@@ -32,8 +32,6 @@ yarn-error.log*
 .pnpm-debug.log*
 
 # env files
-.env
-.env.*
 *.env
 !.env.example
 !.env.sample
@@ -50,5 +48,10 @@ next-env.d.ts
 config.bat
 
 # VS Code
-.vscode/
 *.orc
+
+.env
+.env.*
+.env.local
+.env.production
+.vscode/

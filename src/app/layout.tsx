@@ -17,6 +17,16 @@ export const metadata: Metadata = {
   title: "AS Portfolio Builder — Create Your Portfolio in One Click",
   description:
     "Choose from stunning themes, customize them with ease, and launch your professional portfolio on your domain or our subdomain.",
+  icons: {
+    icon: [
+      { url: "/icon.svg", type: "image/svg+xml" },
+      { url: "/icon.png", sizes: "32x32", type: "image/png" },
+      { url: "/favicon.ico", sizes: "any" },
+    ],
+    apple: [
+      { url: "/apple-icon.png", sizes: "180x180", type: "image/png" },
+    ],
+  },
 };
 
 export default function RootLayout({

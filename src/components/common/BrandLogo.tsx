@@ -115,13 +115,10 @@ export function BrandLogo({
       className={cn("inline-flex items-center gap-3 group select-none", className)}
       aria-label="AS Portfolio Builder Home"
     >
-      {/* Triangular Geometric Emblem Container */}
+      {/* Pure Transparent Vector Emblem - No Box, No Background, No Border */}
       <div
         className={cn(
-          "relative flex items-center justify-center rounded-2xl p-1.5 transition-all duration-300 group-hover:scale-105 shadow-xs border",
-          inverted
-            ? "bg-white/10 border-white/20 hover:bg-white/15"
-            : "bg-[#E8F4F4]/80 border-[#B8DFDF]/80 hover:bg-[#E8F4F4] hover:border-[#136968]/30",
+          "relative flex items-center justify-center transition-transform duration-300 group-hover:scale-105",
           iconDimensions
         )}
       >

@@ -4,20 +4,20 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium transition-all duration-200 outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 active:scale-[0.98] select-none cursor-pointer",
+  "group relative inline-flex items-center justify-center gap-2 overflow-hidden whitespace-nowrap text-sm font-medium transition-all duration-300 outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 active:scale-[0.98] select-none cursor-pointer",
   {
     variants: {
       variant: {
         default:
-          "bg-primary text-primary-foreground shadow-sm hover:opacity-90 hover:shadow-md",
+          "bg-[#136968] text-white shadow-sm border border-[#136968]",
         secondary:
-          "bg-secondary text-secondary-foreground hover:bg-secondary/80 border border-border/40",
+          "bg-[#E8F4F4] text-[#136968] border border-[#B8DFDF] hover:border-[#136968]",
         outline:
-          "border border-border/80 bg-background/80 hover:bg-accent hover:text-accent-foreground backdrop-blur-sm",
+          "border-2 border-[#136968] bg-[#F8F8EF] text-[#10291D]",
         ghost:
-          "hover:bg-accent/60 hover:text-accent-foreground",
+          "bg-transparent text-[#10291D] hover:text-[#136968]",
         brand:
-          "bg-brand-accent text-white hover:bg-brand-accent/90 shadow-sm",
+          "bg-[#249492] text-white shadow-sm",
         link:
           "text-primary underline-offset-4 hover:underline !p-0 !h-auto",
       },
@@ -42,14 +42,62 @@ export interface ButtonProps
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, size, asChild = false, ...props }, ref) => {
-    const Comp = asChild ? Slot : "button";
+  ({ className, variant = "default", size, asChild = false, children, ...props }, ref) => {
+    if (asChild) {
+      return (
+        <Slot
+          className={cn(buttonVariants({ variant, size, className }))}
+          ref={ref}
+          {...props}
+        >
+          {children}
+        </Slot>
+      );
+    }
+
+    // Slider color by variant
+    const sliderBg =
+      variant === "outline"
+        ? "bg-[#136968]"
+        : variant === "default"
+        ? "bg-[#0A4241]"
+        : variant === "secondary"
+        ? "bg-[#136968]"
+        : variant === "brand"
+        ? "bg-[#136968]"
+        : "bg-[#E8F4F4]";
+
+    const textHover =
+      variant === "outline"
+        ? "group-hover:text-white"
+        : variant === "secondary"
+        ? "group-hover:text-white"
+        : "";
+
     return (
-      <Comp
+      <button
         className={cn(buttonVariants({ variant, size, className }))}
         ref={ref}
         {...props}
-      />
+      >
+        {/* Sliding Door / Curtain Overlay */}
+        <span
+          className={cn(
+            "absolute inset-0 z-0 h-full w-full rounded-full transform translate-y-full transition-transform duration-300 ease-out group-hover:translate-y-0",
+            sliderBg
+          )}
+          aria-hidden="true"
+        />
+        {/* Content */}
+        <span
+          className={cn(
+            "relative z-10 inline-flex items-center justify-center gap-2 transition-colors duration-300",
+            textHover
+          )}
+        >
+          {children}
+        </span>
+      </button>
     );
   }
 );

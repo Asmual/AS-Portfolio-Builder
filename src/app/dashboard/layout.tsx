@@ -6,6 +6,7 @@ import { usePathname, useRouter } from "next/navigation";
 import {
   LayoutDashboard,
   FolderGit2,
+  Palette,
   Globe,
   CreditCard,
   Settings,
@@ -52,6 +53,12 @@ export default function DashboardLayout({
       href: "/dashboard",
       icon: LayoutDashboard,
       active: pathname === "/dashboard",
+    },
+    {
+      name: "Theme Editor",
+      href: "/dashboard/theme-editor",
+      icon: Palette,
+      active: pathname.startsWith("/dashboard/theme-editor"),
     },
     {
       name: "My Portfolios",

@@ -124,7 +124,7 @@ export function ThemeFooter({ data }: { data: PortfolioData }) {
 
         {/* Copyright */}
         <div className="pt-8 text-center text-xs text-gray-500 font-sans">
-          &copy; {new Date().getFullYear()} {personal.name}. All Rights Reserved.
+          &copy; 2026 {personal.name}. All Rights Reserved.
         </div>
 
       </div>

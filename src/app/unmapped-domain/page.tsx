@@ -86,7 +86,7 @@ async function UnmappedDomainContent({ searchParams }: PageProps) {
 
       {/* Footer */}
       <footer className="text-center text-xs text-gray-500 max-w-5xl mx-auto w-full pt-8 border-t border-white/5">
-        &copy; {new Date().getFullYear()} AS Portfolio Builder. All rights reserved.
+        &copy; 2026 AS Portfolio Builder. All rights reserved.
       </footer>
     </div>
   );
